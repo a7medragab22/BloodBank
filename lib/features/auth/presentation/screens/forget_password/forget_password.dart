@@ -1,21 +1,20 @@
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/features/auth/presentation/widgets/label.dart';
 import 'package:flutter/material.dart';
 
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_button.dart';
-import 'check_code.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ForgetPassword extends StatelessWidget {
-  static String id = "ForgetPassword";
-
   const ForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title:  Text(
           "نسيت كلمة المرور",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -24,15 +23,15 @@ class ForgetPassword extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             Center(
               child: Image.asset(
                 'Assets/images/forget_passsword.png',
-                width: 200,
-                height: 200,
+                width: 200.w,
+                height: 200.h,
               ),
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             Label(
               preffixIcon: Icons.email_outlined,
               text: 'Email',
@@ -40,11 +39,11 @@ class ForgetPassword extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
 
-            SizedBox(height: 50),
+            SizedBox(height: 50.h),
             CustomButton(
               text: 'Send Code',
               onPressed: () {
-                Navigator.pushNamed(context, CheckCode.id);
+                Navigator.pushNamed(context, AppRoutesName.checkCode);
               },
             ),
           ],

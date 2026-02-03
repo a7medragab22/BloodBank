@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
-  static String id = 'SignUpScreen';
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

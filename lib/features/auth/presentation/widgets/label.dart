@@ -1,5 +1,6 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Label extends StatelessWidget {
   const Label({
@@ -27,10 +28,10 @@ class Label extends StatelessWidget {
       children: [
         Text(
           text,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
           textAlign: TextAlign.right,
         ),
-        SizedBox(height: 12),
+        SizedBox(height: 12.h),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),

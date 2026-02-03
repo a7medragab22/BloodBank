@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProgileView extends StatelessWidget {
-  const ProgileView({super.key});
- static String id = 'ProgileView';
+class ProfileView extends StatelessWidget {
+  const ProfileView({super.key});
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

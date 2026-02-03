@@ -1,9 +1,9 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewPassword extends StatefulWidget {
-  static String id = "NewPassword";
   const NewPassword({super.key});
 
   @override
@@ -59,22 +59,22 @@ class _NewPasswordState extends State<NewPassword> {
               children: [
                 Image.asset(
                   'Assets/images/new_password.png',
-                  width: 100,
-                  height: 100,
+                  width: 100.w,
+                  height: 100.h,
                 ),
-                const SizedBox(height: 20),
-                const Text(
+                 SizedBox(height: 20.h),
+                 Text(
                   'تم تغيير كلمة المرور',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 10),
-                const Text(
+                 SizedBox(height: 10.h),
+                 Text(
                   'تم تغيير كلمة المرور الخاصة بك بنجاح',
-                  style: TextStyle(fontSize: 15, color: Colors.grey),
+                  style: TextStyle(fontSize: 15.sp, color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 20),
+                 SizedBox(height: 20.h),
               ],
             ),
           ),
@@ -87,9 +87,9 @@ class _NewPasswordState extends State<NewPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title:  Text(
           "كلمة مرور جديدة",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -102,15 +102,15 @@ class _NewPasswordState extends State<NewPassword> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 20),
+                     SizedBox(height: 20.h),
                     Center(
                       child: Image.asset(
                         'Assets/images/new_password.png',
-                        width: 200,
-                        height: 200,
+                        width: 200.w,
+                        height: 200.h,
                       ),
                     ),
-                    const Padding(
+                     Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 16.0,
                         vertical: 8,
@@ -120,24 +120,24 @@ class _NewPasswordState extends State<NewPassword> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 15,
-                          height: 1.5,
+                          fontSize: 15.sp,
+                          height: 1.5.h,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 30),
-                    const Align(
+                     SizedBox(height: 30.h),
+                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
                         'كلمة المرور الجديدة',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.right,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                     SizedBox(height: 10.h),
                     Stack(
                       alignment: Alignment.centerLeft,
                       children: [
@@ -165,19 +165,19 @@ class _NewPasswordState extends State<NewPassword> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
-                    const Align(
+                     SizedBox(height: 20.h),
+                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
                         'تأكيد كلمة المرور',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.right,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                     SizedBox(height: 10.h),
                     Stack(
                       alignment: Alignment.centerLeft,
                       children: [
@@ -205,12 +205,12 @@ class _NewPasswordState extends State<NewPassword> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 40),
+                     SizedBox(height: 40.h),
                     CustomButton(
                       text: 'تغير كلمه المرور',
                       onPressed: _changePassword,
                     ),
-                    const SizedBox(height: 20),
+                     SizedBox(height: 20.h),
                   ],
                 ),
               ),

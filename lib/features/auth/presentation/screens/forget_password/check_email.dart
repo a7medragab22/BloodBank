@@ -1,18 +1,17 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_button.dart';
 import 'package:blodbank/features/auth/presentation/screens/forget_password/new_password.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CheckEmail extends StatelessWidget {
-  static String id = "CheckEmail";
-
   const CheckEmail({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "التحقق من البريد",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -21,25 +20,29 @@ class CheckEmail extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             Center(
               child: Image.asset(
                 'Assets/images/check_your_email.png',
-                width: 200,
-                height: 200,
+                width: 200.w,
+                height: 200.h,
               ),
             ),
-            const SizedBox(height: 20),
-            const Padding(
+             SizedBox(height: 20.h),
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمات المرور السابقة المستخدمة.',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey, fontSize: 15, height: 1.5),
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 15.sp,
+                  height: 1.5.h,
+                ),
               ),
             ),
 
-            const SizedBox(height: 50),
+             SizedBox(height: 50.h),
 
             CustomButton(
               text: 'تحقق من بريدك الإلكتروني',
