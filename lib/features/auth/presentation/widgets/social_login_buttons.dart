@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SocialLoginButtons extends StatelessWidget {
   const SocialLoginButtons({super.key});
@@ -17,13 +18,13 @@ class SocialLoginButtons extends StatelessWidget {
 
   Widget _socialButton(String asset) {
     return Container(
-      width: 60,
-      height: 60,
+      width: 60.w,
+      height: 60.h,
       decoration: BoxDecoration(
         color: const Color(0xFFF2F0ED), // لون الخلفية الفاتح
         borderRadius: BorderRadius.circular(20), // الزوايا الدائرية
       ),
-      child: Center(child: Image.asset(asset, width: 28, height: 28)),
+      child: Center(child: Image.asset(asset, width: 28.w, height: 28.h)),
     );
   }
 }

@@ -1,9 +1,9 @@
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RequestBlodView extends StatelessWidget {
   const RequestBlodView({super.key});
-  static String id = 'RequestBlood';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,10 +18,10 @@ class RequestBlodView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 40,
-                    width: 140,
+                    height: 40.h,
+                    width: 140.w,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(8.r),
                       color: Colors.black.withValues(alpha: .88),
                     ),
                     child: Center(
@@ -32,8 +32,8 @@ class RequestBlodView extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 40,
-                    width: 140,
+                    height: 40.h,
+                    width: 140.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: AppColor.kSecondaryColor,
@@ -47,11 +47,11 @@ class RequestBlodView extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               BloodRequestCard(),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               BloodRequestCard(),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               BloodRequestCard(),
             ],
           ),
@@ -68,8 +68,8 @@ class BloodRequestCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(2),
-      height: 280,
-      width: MediaQuery.of(context).size.width,
+      height: .36.sh,
+      width: .9.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: Colors.red,
@@ -92,19 +92,19 @@ class BloodRequestCard extends StatelessWidget {
                       'Patient: ',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                        fontSize: 14.sp,
                       ),
                     ),
                     Text(
                       'Ahmed Mohsen bew bew',
-                      style: TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 12.sp),
                     ),
                   ],
                 ),
-                SizedBox(width: 16),
+                SizedBox(width: 16.w),
                 Container(
-                  height: 28,
-                  width: 70,
+                  height: 28.h,
+                  width: 70.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     color: AppColor.kPrimaryColor,
@@ -125,98 +125,112 @@ class BloodRequestCard extends StatelessWidget {
                   icon: Icon(
                     Icons.favorite_border,
                     color: AppColor.kSecondaryColor,
-                    size: 20,
+                    size: 20.sp,
                   ),
                 ),
                 Text('A+  |  ', style: TextStyle(color: Colors.grey)),
                 Text('3 Unites', style: TextStyle(color: Colors.grey)),
-                SizedBox(width: 16),
-                Icon(Icons.timer_outlined, color: Colors.grey, size: 20),
-                SizedBox(width: 4),
+                SizedBox(width: 16.w),
+                Icon(Icons.timer_outlined, color: Colors.grey, size: 20.sp),
+                SizedBox(width: 4.w),
                 Text('14 days ago', style: TextStyle(color: Colors.grey)),
               ],
             ),
             Text(
               'Patient requires urgent blood transfusion due to surgery.',
-              style: TextStyle(fontSize: 14, color: Colors.grey),
+              style: TextStyle(fontSize: 14.sp, color: Colors.grey),
             ),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Row(
               children: [
-                Icon(Icons.location_on_outlined, color: Colors.grey, size: 20),
-                SizedBox(width: 4),
+                Icon(
+                  Icons.location_on_outlined,
+                  color: Colors.grey,
+                  size: 20.sp,
+                ),
+                SizedBox(width: 4.w),
                 Text(
                   'City genral hospital',
                   style: TextStyle(color: Colors.grey),
                 ),
               ],
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Row(
               children: [
-                Icon(Icons.timer_outlined, color: Colors.grey, size: 20),
-                SizedBox(width: 4),
+                Icon(Icons.timer_outlined, color: Colors.grey, size: 20.sp),
+                SizedBox(width: 4.w),
                 Text(
                   'Needed by: 20 Aug, 2025',
                   style: TextStyle(color: Colors.grey),
                 ),
               ],
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Row(
               children: [
-                Icon(Icons.people, color: Colors.grey, size: 20),
-                SizedBox(width: 4),
+                Icon(Icons.people, color: Colors.grey, size: 20.sp),
+                SizedBox(width: 4.w),
                 Text(
                   '8 donors responded',
                   style: TextStyle(color: Colors.grey),
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Row(
               children: [
-                Container(
-                  height: 35,
-                  width: 210,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: AppColor.kPrimaryColor,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.favorite_outline,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        'I Can Help',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ],
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    height: 35.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: AppColor.kPrimaryColor,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.favorite_outline,
+                          color: Colors.white,
+                          size: 20.sp,
+                        ),
+                        SizedBox(width: 8.w),
+                        Text(
+                          'I Can Help',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(width: 8),
-                Container(
-                  height: 35,
-                  width: 90,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.call, color: Colors.black, size: 18),
-                      SizedBox(width: 4),
-                      Text(
-                        'Call',
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
-                    ],
+                SizedBox(width: 8.w),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 35.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.call, color: Colors.black, size: 18.sp),
+                        SizedBox(width: 4.w),
+                        Text(
+                          'Call',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14.sp,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
