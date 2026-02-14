@@ -1,12 +1,12 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_button.dart';
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
-import 'package:blodbank/features/NavigationBar/presentation/Views/navigation_bar.dart';
 import 'package:blodbank/core/ReusableCompounds/widgets/logo.dart';
 import 'package:blodbank/features/auth/presentation/cubits/SignUp/sign_up_cubit.dart';
-import 'package:blodbank/features/auth/presentation/screens/login_screen.dart';
 import 'package:blodbank/features/auth/presentation/widgets/label.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpInfoBody extends StatelessWidget {
   const SignUpInfoBody({super.key});
@@ -27,15 +27,15 @@ class SignUpInfoBody extends StatelessWidget {
               });
               context.read<SignUpCubit>().clearState();
             } else if (state.status == SignUpStatus.success) {
-              Navigator.pushReplacementNamed(context, NavigationBBar.id);
+              Navigator.pushReplacementNamed(context, AppRoutesName.navigationBBar);
             }
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Logo(),
-              SizedBox(height: 32),
+              SizedBox(height: 32.h),
               Label(
                 preffixIcon: Icons.person_outline,
                 text: 'Full Name',
@@ -44,7 +44,7 @@ class SignUpInfoBody extends StatelessWidget {
                 onChanged: (value) =>
                     context.read<SignUpCubit>().setFullName(value),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Label(
                 preffixIcon: Icons.badge_outlined,
                 text: 'National Id',
@@ -53,7 +53,7 @@ class SignUpInfoBody extends StatelessWidget {
                 onChanged: (value) =>
                     context.read<SignUpCubit>().setNationalId(int.parse(value)),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Label(
                 preffixIcon: Icons.phone_outlined,
                 text: 'Phone Number',
@@ -63,7 +63,7 @@ class SignUpInfoBody extends StatelessWidget {
                     .read<SignUpCubit>()
                     .setPhoneNumber(int.parse(value)),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Label(
                 preffixIcon: Icons.lock_outline,
                 text: 'Password',
@@ -72,7 +72,7 @@ class SignUpInfoBody extends StatelessWidget {
                 onChanged: (value) =>
                     context.read<SignUpCubit>().setPassword(value),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Label(
                 preffixIcon: Icons.lock_outline,
                 text: 'Confirm Password',
@@ -81,7 +81,7 @@ class SignUpInfoBody extends StatelessWidget {
                 onChanged: (value) =>
                     context.read<SignUpCubit>().setConfirmPassword(value),
               ),
-              SizedBox(height: 32),
+              SizedBox(height: 32.h),
 
               BlocConsumer<SignUpCubit, SignUpState>(
                 listenWhen: (previous, current) =>
@@ -95,7 +95,7 @@ class SignUpInfoBody extends StatelessWidget {
                       (value) => context.read<SignUpCubit>().clearState(),
                     );
                   } else if (state.status == SignUpStatus.success) {
-                    Navigator.pushReplacementNamed(context, NavigationBBar.id);
+                    Navigator.pushReplacementNamed(context, AppRoutesName.navigationBBar);
                   }
                 },
                 builder: (context, state) {
@@ -112,31 +112,34 @@ class SignUpInfoBody extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 12.h),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, LoginScreen.id);
+                      Navigator.pushReplacementNamed(
+                        context,
+                        AppRoutesName.logIn,
+                      );
                     },
                     child: Text(
                       'Log In',
                       style: TextStyle(
                         color: AppColor.kPrimaryColor,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                       ),
                     ),
                   ),
 
                   Text(
                     'i dont have an account',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 18.sp),
                   ),
                 ],
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 8.h),
             ],
           ),
         ),

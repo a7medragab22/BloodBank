@@ -1,5 +1,6 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/icon_favourite_with_back_arrow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomBackArrow extends StatelessWidget {
   final IconData icon;
@@ -25,7 +26,7 @@ class CustomBackArrow extends StatelessWidget {
         onTap: () => Navigator.pop(context),
         borderRadius: BorderRadius.circular(12),
         child: Container(
-          height: 60,
+          height: 60.h,
           padding: const EdgeInsets.symmetric(vertical: 10),
           margin: padding,
           decoration: BoxDecoration(
@@ -44,7 +45,7 @@ class CustomBackArrow extends StatelessWidget {
                       text!,
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     )
