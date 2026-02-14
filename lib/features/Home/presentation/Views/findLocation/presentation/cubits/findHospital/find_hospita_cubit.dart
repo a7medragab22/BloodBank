@@ -1,9 +1,9 @@
-import 'package:blodbank/features/Home/presentation/Views/findHospital/presentation/model/find_hospital_model.dart';
+import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/model/find_hospital_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'find_hospita_state.dart';
 
-class FindHospitaCubit extends Cubit<FindHospitaState> {
+class FindHospitaCubit extends Cubit<FindHospitalState> {
   FindHospitaCubit() : super(FindHospitalInitial());
   void loadHospital() {
     emit(
