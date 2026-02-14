@@ -96,28 +96,7 @@ class PersonInfoCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 8.h),
-            Row(
-              children: [
-                Icon(Icons.timer_outlined, color: Colors.grey, size: 20.sp),
-                SizedBox(width: 4.w),
-                Text(
-                  'Needed by: 20 Aug, 2025',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-            SizedBox(height: 8.h),
-            Row(
-              children: [
-                Icon(Icons.people, color: Colors.grey, size: 20.sp),
-                SizedBox(width: 4.w),
-                Text(
-                  '8 donors responded',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
+
             SizedBox(height: 16.h),
             Row(
               children: [

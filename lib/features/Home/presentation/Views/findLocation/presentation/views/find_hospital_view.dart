@@ -11,7 +11,7 @@ class FindHospitalView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Find Locations', style: TextStyle(fontSize: 18)),
+        title: const Text('Become Donor', style: TextStyle(fontSize: 18)),
       ),
       body: DefaultTabController(
         length: 2,
@@ -34,8 +34,8 @@ class FindHospitalView extends StatelessWidget {
                 labelColor: Colors.white,
                 unselectedLabelColor: Colors.grey,
                 tabs: const [
-                  Tab(text: 'Hospitals'),
-                  Tab(text: 'Persons'),
+                  Tab(text: 'Hospital'),
+                  Tab(text: 'Person Requests'),
                 ],
               ),
             ),
