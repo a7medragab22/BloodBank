@@ -1,4 +1,5 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_button.dart';
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/auth/presentation/widgets/label.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,11 @@ class DonateView extends StatelessWidget {
               SizedBox(height: 16.h),
               WeightSlider(),
               SizedBox(height: 16.h),
-              CustomButton(text: 'Done'),
+              CustomButton(
+                text: 'Done',
+                onPressed: () =>
+                    Navigator.pushNamed(context, AppRoutesName.findHospital),
+              ),
             ],
           ),
         ),

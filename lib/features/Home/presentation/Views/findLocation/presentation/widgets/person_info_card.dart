@@ -2,67 +2,8 @@ import 'package:blodbank/core/themes/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class RequestBlodView extends StatelessWidget {
-  const RequestBlodView({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 243, 243, 243),
-      appBar: AppBar(title: Text('Blood Request')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 40.h,
-                    width: 140.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      color: Colors.black.withValues(alpha: .88),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '🔍    Find Donors',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 40.h,
-                    width: 140.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: AppColor.kSecondaryColor,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '+    New Request',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16.h),
-              BloodRequestCard(),
-              SizedBox(height: 16.h),
-              BloodRequestCard(),
-              SizedBox(height: 16.h),
-              BloodRequestCard(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class BloodRequestCard extends StatelessWidget {
-  const BloodRequestCard({super.key});
+class PersonInfoCard extends StatelessWidget {
+  const PersonInfoCard({super.key});
 
   @override
   Widget build(BuildContext context) {
