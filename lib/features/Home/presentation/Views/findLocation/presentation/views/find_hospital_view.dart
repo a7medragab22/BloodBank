@@ -1,3 +1,4 @@
+import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/widgets/hospital_tab.dart';
 import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/widgets/person_tab.dart';
 import 'package:flutter/material.dart';
@@ -27,10 +28,10 @@ class FindHospitalView extends StatelessWidget {
                 dividerColor: Colors.transparent,
                 indicatorSize: TabBarIndicatorSize.tab,
                 indicator: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColor.kPrimaryColor,
                   borderRadius: BorderRadius.circular(24.r),
                 ),
-                labelColor: Colors.black,
+                labelColor: Colors.white,
                 unselectedLabelColor: Colors.grey,
                 tabs: const [
                   Tab(text: 'Hospitals'),
