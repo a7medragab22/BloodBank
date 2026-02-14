@@ -18,8 +18,8 @@ class DonateView extends StatelessWidget {
           child: Column(
             children: [
               Label(
-                text: 'Name:',
-                hintText: 'Enter your Name',
+                text: 'Age:',
+                hintText: 'Enter your age',
                 textAlign: TextAlign.left,
                 preffixIcon: Icons.person,
               ),
