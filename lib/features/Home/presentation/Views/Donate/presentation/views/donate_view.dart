@@ -1,11 +1,12 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_button.dart';
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/auth/presentation/widgets/label.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DonateView extends StatelessWidget {
   const DonateView({super.key});
-  static const String id = 'DonateView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,26 +18,30 @@ class DonateView extends StatelessWidget {
           child: Column(
             children: [
               Label(
-                text: 'Name:',
-                hintText: 'Enter your Name',
+                text: 'Age:',
+                hintText: 'Enter your age',
                 textAlign: TextAlign.left,
                 preffixIcon: Icons.person,
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Label(
                 text: 'Last Donation Date:',
                 hintText: 'Enter the date of your last donation',
                 textAlign: TextAlign.left,
                 preffixIcon: Icons.date_range,
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               ChoseGender(),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               SelectBlodType(),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               WeightSlider(),
-              SizedBox(height: 16),
-              CustomButton(text: 'Done'),
+              SizedBox(height: 16.h),
+              CustomButton(
+                text: 'Done',
+                onPressed: () =>
+                    Navigator.pushNamed(context, AppRoutesName.findHospital),
+              ),
             ],
           ),
         ),
@@ -66,10 +71,10 @@ class _WeightSliderState extends State<WeightSlider> {
             Row(
               children: [
                 Icon(Icons.person, color: AppColor.kSecondaryColor, size: 28),
-                SizedBox(width: 8),
+                SizedBox(width: 8.w),
                 Text(
                   "Weight",
-                  style: TextStyle(fontSize: 20, color: Colors.grey[500]),
+                  style: TextStyle(fontSize: 20.sp, color: Colors.grey[500]),
                 ),
               ],
             ),
@@ -77,7 +82,7 @@ class _WeightSliderState extends State<WeightSlider> {
             Text(
               "${weight.toInt()} KGS",
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 color: AppColor.kSecondaryColor,
               ),
@@ -85,7 +90,7 @@ class _WeightSliderState extends State<WeightSlider> {
           ],
         ),
 
-        SizedBox(height: 16),
+        SizedBox(height: 16.h),
 
         /// ---------- Slider ----------
         SliderTheme(
@@ -93,7 +98,7 @@ class _WeightSliderState extends State<WeightSlider> {
             activeTrackColor: AppColor.kSecondaryColor,
             inactiveTrackColor: Colors.grey[400],
             thumbColor: AppColor.kPrimaryColor,
-            trackHeight: 4,
+            trackHeight: 4.h,
             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10),
           ),
           child: Slider(
@@ -145,7 +150,7 @@ class CustomCircleAvatar extends StatelessWidget {
             blodType,
             style: TextStyle(
               color: textColor,
-              fontSize: 14,
+              fontSize: 14.sp,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -172,11 +177,11 @@ class _SelectBlodTypeState extends State<SelectBlodType> {
           children: [
             Text(
               '  Blood Type:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
             ),
           ],
         ),
-        SizedBox(height: 8),
+        SizedBox(height: 8.h),
         Column(
           children: [
             Row(
@@ -259,7 +264,7 @@ class _SelectBlodTypeState extends State<SelectBlodType> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -278,7 +283,7 @@ class _SelectBlodTypeState extends State<SelectBlodType> {
                       ? Colors.white
                       : Colors.grey,
                 ),
-                SizedBox(width: 14),
+                SizedBox(width: 14.w),
                 CustomCircleAvatar(
                   blodType: 'AB+',
                   onTap: () => setState(() {
@@ -294,7 +299,7 @@ class _SelectBlodTypeState extends State<SelectBlodType> {
                       ? Colors.white
                       : Colors.grey,
                 ),
-                SizedBox(width: 14),
+                SizedBox(width: 14.w),
                 CustomCircleAvatar(
                   blodType: 'AB-',
                   onTap: () => setState(() {
@@ -336,11 +341,11 @@ class _ChoseGenderState extends State<ChoseGender> {
           children: [
             Text(
               '  Gender:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
             ),
           ],
         ),
-        SizedBox(height: 8),
+        SizedBox(height: 8.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -362,19 +367,19 @@ class _ChoseGenderState extends State<ChoseGender> {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 Text(
                   'Male',
                   style: TextStyle(
                     color: selectedGender == 'male'
                         ? AppColor.kSecondaryColor
                         : Colors.grey,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
               ],
             ),
-            SizedBox(width: 32),
+            SizedBox(width: 32.w),
             Column(
               children: [
                 GestureDetector(
@@ -393,14 +398,14 @@ class _ChoseGenderState extends State<ChoseGender> {
                     ),
                   ),
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 Text(
                   'Female',
                   style: TextStyle(
                     color: selectedGender == 'female'
                         ? AppColor.kSecondaryColor
                         : Colors.grey,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                   ),
                 ),
               ],

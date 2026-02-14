@@ -1,14 +1,14 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/logo.dart';
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
-import 'package:blodbank/features/auth/presentation/screens/login_screen.dart';
-import 'package:blodbank/features/auth/presentation/screens/sign_up_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InitialView extends StatelessWidget {
   const InitialView({super.key});
-  static String id = 'InitialView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,27 +18,27 @@ class InitialView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(child: Logo()),
-          SizedBox(height: 64),
+          SizedBox(height: 64.h),
           SizedBox(
-            width: 250,
+            width: 250.w,
             child: Text(
               'Dramatically unleash cutting-edge vortals before maintainable platforms.',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
+              style: TextStyle(fontSize: 12.sp, color: Colors.grey),
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(height: 32),
+          SizedBox(height: 32.h),
           CustomButton(
             text: 'Sign Up',
             buttonColor: Colors.transparent,
             textColor: AppColor.kSecondaryColor,
-            onPressed: () => Navigator.pushNamed(context, SignUpScreen.id),
+            onPressed: () => Navigator.pushNamed(context, AppRoutesName.signUp),
           ),
-          SizedBox(height: 12),
+          SizedBox(height: 12.h),
           CustomButton(
             text: 'Log In',
             onPressed: () {
-              Navigator.pushNamed(context, LoginScreen.id);
+              Navigator.pushNamed(context, AppRoutesName.logIn);
             },
           ),
         ],
