@@ -1,5 +1,6 @@
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatefulWidget {
   final IconData? icon;
@@ -48,7 +49,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         hintText: widget.hintText,
-        hintStyle: TextStyle(color: widget.hintColor, fontSize: 14),
+        hintStyle: TextStyle(color: widget.hintColor, fontSize: 14.sp),
         prefixIcon: Icon(widget.preffixIcon, color: AppColor.kSecondaryColor),
         suffixIcon: widget.obscureText
             ? IconButton(

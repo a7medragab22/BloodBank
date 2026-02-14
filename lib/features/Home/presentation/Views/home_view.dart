@@ -1,10 +1,10 @@
-import 'package:blodbank/features/Donate/presentation/views/donate_view.dart';
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/features/Home/presentation/Widgets/blod_action_section.dart';
 import 'package:blodbank/features/Home/presentation/Widgets/donor_info_card.dart';
 import 'package:blodbank/features/Home/presentation/Widgets/user_location_section.dart';
 import 'package:blodbank/features/Home/presentation/Widgets/user_welcome_section.dart';
-import 'package:blodbank/features/requestBlod/presentation/views/request_blod_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -21,7 +21,7 @@ class HomeView extends StatelessWidget {
               children: [UserWelcomeSection(), UserLocation()],
             ),
 
-            SizedBox(height: 24),
+            SizedBox(height: 24.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
@@ -29,20 +29,18 @@ class HomeView extends StatelessWidget {
                 BlodActionSection(
                   name: 'Request Blood',
                   imagePath: 'Assets/images/request.png',
-                  onTap: () {
-                    Navigator.of(context).pushNamed(RequestBlodView.id);
-                  },
+                  onTap: () {},
                 ),
                 BlodActionSection(
                   name: 'Donate Blood',
                   imagePath: 'Assets/images/donate.png',
                   onTap: () {
-                    Navigator.of(context).pushNamed(DonateView.id);
+                    Navigator.of(context).pushNamed(AppRoutesName.donateView);
                   },
                 ),
               ],
             ),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Container(
               decoration: BoxDecoration(
                 boxShadow: [
@@ -58,10 +56,10 @@ class HomeView extends StatelessWidget {
                 'Assets/images/together.jpg',
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: 100,
+                height: 100.h,
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
             DonorInfoCard(),
           ],
         ),

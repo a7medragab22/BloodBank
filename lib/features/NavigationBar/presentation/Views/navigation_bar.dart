@@ -4,7 +4,7 @@ import 'package:blodbank/features/Home/presentation/Views/home_view.dart';
 import 'package:blodbank/features/Maps/presentation/Views/map_view.dart';
 import 'package:blodbank/features/NavigationBar/presentation/Cubits/navigation/navigation_cubit.dart';
 
-import 'package:blodbank/features/Profile/presentation/Views/progile_view.dart';
+import 'package:blodbank/features/Profile/presentation/Views/profile_view.dart';
 import 'package:blodbank/features/Rewards/presentation/views/reward_view.dart';
 
 import 'package:flutter/material.dart';
@@ -13,7 +13,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NavigationBBar extends StatelessWidget {
   const NavigationBBar({super.key});
-  static String id = 'NavigationBBar';
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationCubit, NavigationState>(
@@ -24,7 +23,7 @@ class NavigationBBar extends StatelessWidget {
           const MapView(),
           const HomeView(),
           const RewardView(),
-          const ProgileView(),
+          const ProfileView(),
         ];
         return Scaffold(
           backgroundColor: Color(0xfffafafa),
