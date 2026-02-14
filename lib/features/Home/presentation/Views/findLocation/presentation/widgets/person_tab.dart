@@ -7,20 +7,23 @@ class PersonTap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 243, 243),
-      body: ListView(
-        children: [
-          SizedBox(height: 16),
-          PersonInfoCard(),
-          SizedBox(height: 16),
-          PersonInfoCard(),
-          SizedBox(height: 16),
-          PersonInfoCard(),
-          SizedBox(height: 16),
-          PersonInfoCard(),
-          SizedBox(height: 16),
-          PersonInfoCard(),
-          SizedBox(height: 16),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: ListView(
+          children: [
+            SizedBox(height: 16),
+            PersonInfoCard(),
+            SizedBox(height: 16),
+            PersonInfoCard(),
+            SizedBox(height: 16),
+            PersonInfoCard(),
+            SizedBox(height: 16),
+            PersonInfoCard(),
+            SizedBox(height: 16),
+            PersonInfoCard(),
+            SizedBox(height: 16),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,3 @@
-
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/model/find_hospital_model.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +100,7 @@ class HospitalInfoCard extends StatelessWidget {
 
                   onPressed: () {},
 
-                  icon: const Icon(Icons.navigation),
+                  icon: const Icon(Icons.navigation_outlined),
                   label: const Text(
                     'Directions',
                     style: TextStyle(color: Colors.white),
