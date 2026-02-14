@@ -2,7 +2,6 @@ import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/views/donate_view.dart';
 import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/cubits/findHospital/find_hospita_cubit.dart';
 import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/views/find_hospital_view.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/widgets/person_tab.dart';
 import 'package:blodbank/features/NavigationBar/presentation/Cubits/navigation/navigation_cubit.dart';
 import 'package:blodbank/features/NavigationBar/presentation/Views/navigation_bar.dart';
 import 'package:blodbank/features/Profile/presentation/Views/profile_view.dart';
