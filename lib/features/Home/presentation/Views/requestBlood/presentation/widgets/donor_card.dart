@@ -1,3 +1,4 @@
+import 'package:blodbank/core/ReusableCompounds/widgets/custom_second_button.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
 import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/models/donor_model.dart';
@@ -91,43 +92,23 @@ class DonorCard extends StatelessWidget {
             SizedBox(height: 8.h),
             Row(
               children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColor.kPrimaryColor,
-                    foregroundColor: Colors.white,
-                    minimumSize: Size(.4.sw, 40),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-
-                  onPressed: () {
-                    context.read<DonorCubit>().callDonor(donor.phoneNumber);
-                  },
-
-                  child: Row(
-                    children: [
-                      Icon(Icons.phone_outlined, size: 18.sp),
-                      SizedBox(width: 6.w),
-                      Text('contact'),
-                    ],
+                Expanded(
+                  child: CustomSecondButton(
+                    text: 'contact',
+                    onPressed: () {
+                      context.read<DonorCubit>().callDonor(donor.phoneNumber);
+                    },
                   ),
                 ),
-                Spacer(),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    minimumSize: Size(.2.sw, 40.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    side: BorderSide(color: Colors.grey.shade200),
+                SizedBox(width: 10.w),
+                Expanded(
+                  child: CustomSecondButton(
+                    text: 'message',
+                    backgroundColor: Colors.grey.shade300,
+                    textColor: Colors.black,
+
+                    onPressed: () {},
                   ),
-
-                  onPressed: () {},
-
-                  child: Row(children: [Text('message')]),
                 ),
               ],
             ),

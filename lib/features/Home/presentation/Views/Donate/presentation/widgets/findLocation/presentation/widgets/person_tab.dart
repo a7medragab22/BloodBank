@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class PersonTap extends StatelessWidget {
   const PersonTap({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
