@@ -1,5 +1,8 @@
+import 'package:blodbank/core/ReusableCompounds/widgets/custom_second_button.dart';
 import 'package:blodbank/core/themes/app_color.dart';
+import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/cubits/bloodRequest/blood_request_cubit.dart';
 import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
+import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/widgets/blood_request_sheet.dart';
 import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/widgets/donor_card.dart';
 import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/widgets/filter_section.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +15,7 @@ class FindDonorsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarFindDonors(),
+      appBar: appBarFindDonors(context),
 
       body: Column(
         children: [
@@ -64,24 +67,28 @@ class FindDonorsView extends StatelessWidget {
     );
   }
 
-  AppBar appBarFindDonors() {
+  AppBar appBarFindDonors(BuildContext context) {
     return AppBar(
       title: const Text("Find Donors", style: TextStyle(fontSize: 18)),
       actions: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColor.kPrimaryColor,
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          onPressed: () {},
-          child: Text('+ New Request'),
+        CustomSecondButton(
+          text: '+ New Request',
+          height: 40.h,
+          width: .4.sw,
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              builder: (_) => BlocProvider(
+                create: (_) => BloodRequestCubit(),
+                child: const BloodRequestSheet(),
+              ),
+            );
+          },
         ),
         SizedBox(width: 16.w),
       ],
     );
   }
 }
-

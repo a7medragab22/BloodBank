@@ -9,7 +9,7 @@ class PersonInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(2),
-      height: .36.sh,
+      height: .3.sh,
       width: .9.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),

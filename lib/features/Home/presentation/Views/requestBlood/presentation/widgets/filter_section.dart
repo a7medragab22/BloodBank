@@ -1,5 +1,5 @@
+import 'package:blodbank/core/ReusableCompounds/widgets/custom_dropdown_feild.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FilterSection extends StatelessWidget {
   const FilterSection({super.key});
@@ -18,7 +18,7 @@ class FilterSection extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: AppDropdownField(
+                child: CustomDropdownField(
                   value: 'O+',
                   items: const [
                     'A+',
@@ -35,7 +35,7 @@ class FilterSection extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: AppDropdownField(
+                child: CustomDropdownField(
                   value: '50 m',
                   items: const [
                     '50 m',
@@ -67,39 +67,6 @@ class FilterSection extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class AppDropdownField extends StatelessWidget {
-  final String? value;
-  final List<String> items;
-  final Function(String?) onChanged;
-
-  const AppDropdownField({
-    super.key,
-    required this.value,
-    required this.items,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
-      initialValue: value,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.grey.shade100,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide.none,
-        ),
-        contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 6.h),
-      ),
-      items: items
-          .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-          .toList(),
-      onChanged: onChanged,
     );
   }
 }
