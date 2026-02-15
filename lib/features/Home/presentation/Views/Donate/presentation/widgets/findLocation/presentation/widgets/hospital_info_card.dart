@@ -1,5 +1,5 @@
 import 'package:blodbank/core/themes/app_color.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/model/find_hospital_model.dart';
+import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/model/find_hospital_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
