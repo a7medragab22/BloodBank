@@ -9,12 +9,13 @@ class CustomButton extends StatelessWidget {
     this.onPressed,
     this.buttonColor = AppColor.kSecondaryColor,
     this.textColor = Colors.white,
- 
+
   });
   final String text;
   final Color buttonColor;
   final Color textColor;
   final VoidCallback? onPressed;
+  
 
 
   @override
