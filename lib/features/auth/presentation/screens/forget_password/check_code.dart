@@ -1,11 +1,10 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_button.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'check_email.dart';
 
 class CheckCode extends StatefulWidget {
-  static String id = "CheckCode";
-
   const CheckCode({super.key});
 
   @override
@@ -80,9 +79,9 @@ class _CheckCodeState extends State<CheckCode> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "التحقق من الكود",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -91,23 +90,23 @@ class _CheckCodeState extends State<CheckCode> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             Center(
               child: Text(
                 '00:${_seconds.toString().padLeft(2, '0')}',
-                style: const TextStyle(
-                  fontSize: 24,
+                style: TextStyle(
+                  fontSize: 24.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+             SizedBox(height: 30.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: List.generate(4, (index) {
                 return SizedBox(
-                  width: 60,
+                  width: 60.w,
                   child: TextField(
                     controller: _controllers[index],
                     textAlign: TextAlign.center,
@@ -118,14 +117,14 @@ class _CheckCodeState extends State<CheckCode> {
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: hasError ? Colors.red : Colors.grey,
-                          width: 2,
+                          width: 2.w,
                         ),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: hasError ? Colors.red : Colors.grey,
-                          width: 2,
+                          width: 2.w,
                         ),
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -143,21 +142,21 @@ class _CheckCodeState extends State<CheckCode> {
             ),
 
             if (hasError) ...[
-              const SizedBox(height: 10),
+               SizedBox(height: 10.h),
               Text(
                 errorText!,
-                style: const TextStyle(color: Colors.red, fontSize: 14),
+                style: TextStyle(color: Colors.red, fontSize: 14.sp),
                 textAlign: TextAlign.center,
               ),
             ],
 
-            const SizedBox(height: 30),
+             SizedBox(height: 30.h),
             CustomButton(
               text: hasError ? 'إعادة الإرسال' : 'إرسال',
               onPressed: hasError ? _resendCode : _checkCode,
             ),
 
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             if (!hasError)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -167,18 +166,18 @@ class _CheckCodeState extends State<CheckCode> {
                     style: TextButton.styleFrom(
                       foregroundColor: const Color(0xFFD4B38C),
                     ),
-                    child: const Text(
+                    child:  Text(
                       'أعد إرساله',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
                         color: AppColor.kPrimaryColor,
                       ),
                     ),
                   ),
-                  const Text(
+                   Text(
                     'لم تستلم الكود؟ ',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16.sp),
                   ),
                 ],
               ),

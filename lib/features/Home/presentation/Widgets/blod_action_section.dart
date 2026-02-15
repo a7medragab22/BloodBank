@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BlodActionSection extends StatelessWidget {
   const BlodActionSection({
@@ -15,8 +16,8 @@ class BlodActionSection extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 160,
-        width: MediaQuery.of(context).size.width * 0.44,
+        height: 160.h,
+        width: .43.sw,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
@@ -36,8 +37,8 @@ class BlodActionSection extends StatelessWidget {
               right: 0,
               child: Image.asset(
                 imagePath,
-                width: 120,
-                height: 100,
+                width: 120.w,
+                height: 100.h,
                 fit: BoxFit.contain,
               ),
             ),
@@ -47,7 +48,7 @@ class BlodActionSection extends StatelessWidget {
               child: Text(
                 name,
 
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
               ),
             ),
           ],
