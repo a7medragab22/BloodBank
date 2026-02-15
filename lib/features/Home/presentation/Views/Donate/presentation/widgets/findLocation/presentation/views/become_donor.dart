@@ -1,17 +1,17 @@
 import 'package:blodbank/core/themes/app_color.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/widgets/hospital_tab.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/widgets/person_tab.dart';
+import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/widgets/hospital_tab.dart';
+import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/widgets/person_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FindHospitalView extends StatelessWidget {
-  const FindHospitalView({super.key});
+class BecomeDonor extends StatelessWidget {
+  const BecomeDonor({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Find Locations', style: TextStyle(fontSize: 18)),
+        title: const Text('Become Donor', style: TextStyle(fontSize: 18)),
       ),
       body: DefaultTabController(
         length: 2,
@@ -34,8 +34,8 @@ class FindHospitalView extends StatelessWidget {
                 labelColor: Colors.white,
                 unselectedLabelColor: Colors.grey,
                 tabs: const [
-                  Tab(text: 'Hospitals'),
-                  Tab(text: 'Persons'),
+                  Tab(text: 'Hospital'),
+                  Tab(text: 'Person Requests'),
                 ],
               ),
             ),

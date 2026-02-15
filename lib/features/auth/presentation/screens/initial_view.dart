@@ -30,6 +30,7 @@ class InitialView extends StatelessWidget {
           SizedBox(height: 32.h),
           CustomButton(
             text: 'Sign Up',
+
             buttonColor: Colors.transparent,
             textColor: AppColor.kSecondaryColor,
             onPressed: () => Navigator.pushNamed(context, AppRoutesName.signUp),
@@ -37,6 +38,7 @@ class InitialView extends StatelessWidget {
           SizedBox(height: 12.h),
           CustomButton(
             text: 'Log In',
+
             onPressed: () {
               Navigator.pushNamed(context, AppRoutesName.logIn);
             },

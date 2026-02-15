@@ -9,7 +9,7 @@ class PersonInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(2),
-      height: .36.sh,
+      height: .3.sh,
       width: .9.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -96,28 +96,7 @@ class PersonInfoCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 8.h),
-            Row(
-              children: [
-                Icon(Icons.timer_outlined, color: Colors.grey, size: 20.sp),
-                SizedBox(width: 4.w),
-                Text(
-                  'Needed by: 20 Aug, 2025',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-            SizedBox(height: 8.h),
-            Row(
-              children: [
-                Icon(Icons.people, color: Colors.grey, size: 20.sp),
-                SizedBox(width: 4.w),
-                Text(
-                  '8 donors responded',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
+
             SizedBox(height: 16.h),
             Row(
               children: [

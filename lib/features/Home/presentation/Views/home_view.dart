@@ -29,7 +29,9 @@ class HomeView extends StatelessWidget {
                 BlodActionSection(
                   name: 'Request Blood',
                   imagePath: 'Assets/images/request.png',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutesName.findDonors);
+                  },
                 ),
                 BlodActionSection(
                   name: 'Donate Blood',

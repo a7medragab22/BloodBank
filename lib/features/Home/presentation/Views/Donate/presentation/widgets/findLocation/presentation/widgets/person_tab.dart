@@ -1,8 +1,9 @@
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/widgets/person_info_card.dart';
+import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/widgets/person_info_card.dart';
 import 'package:flutter/material.dart';
 
 class PersonTap extends StatelessWidget {
   const PersonTap({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
