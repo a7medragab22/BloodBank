@@ -4,8 +4,8 @@ import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/wi
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FindHospitalView extends StatelessWidget {
-  const FindHospitalView({super.key});
+class BecomeDonor extends StatelessWidget {
+  const BecomeDonor({super.key});
 
   @override
   Widget build(BuildContext context) {
