@@ -1,7 +1,9 @@
 import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/views/donate_view.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/cubits/findHospital/find_hospita_cubit.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/views/find_hospital_view.dart';
+import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/cubits/findHospital/find_hospita_cubit.dart';
+import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/views/find_hospital_view.dart';
+import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
+import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/views/find_donors_view.dart';
 import 'package:blodbank/features/NavigationBar/presentation/Cubits/navigation/navigation_cubit.dart';
 import 'package:blodbank/features/NavigationBar/presentation/Views/navigation_bar.dart';
 import 'package:blodbank/features/Profile/presentation/Views/profile_view.dart';
@@ -41,6 +43,10 @@ class AppRoute {
     AppRoutesName.findHospital: (_) => BlocProvider(
       create: (context) => FindHospitaCubit()..loadHospital(),
       child: FindHospitalView(),
+    ),
+    AppRoutesName.findDonors: (_) => BlocProvider(
+      create: (context) => DonorCubit()..loadDonors(),
+      child: FindDonorsView(),
     ),
   };
 }

@@ -10,4 +10,5 @@ class AppRoutesName {
   static const String navigationBBar = 'NavigationBBar';
   static const String profileView = 'ProfileView';
   static const String findHospital = 'findHospital';
+  static const String findDonors = 'findDonors';
 }

@@ -18,21 +18,35 @@ class DonateView extends StatelessWidget {
           child: Column(
             children: [
               Label(
+                text: 'Name:',
+                hintText: 'Enter your Name',
+                textAlign: TextAlign.left,
+                preffixIcon: Icons.person,
+              ),
+              SizedBox(height: 8.h),
+              Label(
                 text: 'Age:',
                 hintText: 'Enter your age',
                 textAlign: TextAlign.left,
                 preffixIcon: Icons.person,
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 8.h),
+              Label(
+                text: 'Phone:',
+                hintText: 'Enter your mobile phone',
+                textAlign: TextAlign.left,
+                preffixIcon: Icons.person,
+              ),
+              SizedBox(height: 8.h),
               Label(
                 text: 'Last Donation Date:',
                 hintText: 'Enter the date of your last donation',
                 textAlign: TextAlign.left,
                 preffixIcon: Icons.date_range,
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 8.h),
               ChoseGender(),
-              SizedBox(height: 16.h),
+              SizedBox(height: 8.h),
               SelectBlodType(),
               SizedBox(height: 16.h),
               WeightSlider(),
