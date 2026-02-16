@@ -1,11 +1,11 @@
 import 'package:blodbank/core/themes/app_color.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/widgets/hospital_tab.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/widgets/person_tab.dart';
+import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/widgets/hospital_tab.dart';
+import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/widgets/person_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FindHospitalView extends StatelessWidget {
-  const FindHospitalView({super.key});
+class BecomeDonor extends StatelessWidget {
+  const BecomeDonor({super.key});
 
   @override
   Widget build(BuildContext context) {

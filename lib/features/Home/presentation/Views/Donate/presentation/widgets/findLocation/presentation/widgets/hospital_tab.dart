@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blodbank/core/themes/app_color.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/cubits/findHospital/find_hospita_cubit.dart';
+import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/cubits/findHospital/find_hospita_cubit.dart';
 import 'hospital_info_card.dart';
 
 class HospitalsTab extends StatelessWidget {
