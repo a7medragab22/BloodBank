@@ -1,11 +1,13 @@
 import 'package:blodbank/core/Routes/app_routes_name.dart';
-import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/views/donate_view.dart';
-import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/cubits/findHospital/find_hospita_cubit.dart';
-import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/widgets/findLocation/presentation/views/become_donor.dart';
-import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
-import 'package:blodbank/features/Home/presentation/Views/requestBlood/presentation/views/find_donors_view.dart';
+import 'package:blodbank/features/presentation/views/donate_view.dart';
+import 'package:blodbank/features/presentation/widgets/findLocation/presentation/cubits/findHospital/find_hospita_cubit.dart';
+import 'package:blodbank/features/presentation/widgets/findLocation/presentation/views/become_donor.dart';
+import 'package:blodbank/features/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
+import 'package:blodbank/features/requestBlood/presentation/views/find_donors_view.dart';
 import 'package:blodbank/features/NavigationBar/presentation/Cubits/navigation/navigation_cubit.dart';
 import 'package:blodbank/features/NavigationBar/presentation/Views/navigation_bar.dart';
+import 'package:blodbank/features/Home/presentation/Views/upload_report_view.dart';
+import 'package:blodbank/features/Notifications/presentation/views/notifications_view.dart';
 import 'package:blodbank/features/Profile/presentation/Views/profile_view.dart';
 import 'package:blodbank/features/auth/presentation/cubits/LogIn/log_in_cubit.dart';
 import 'package:blodbank/features/auth/presentation/cubits/SignUp/sign_up_cubit.dart';
@@ -45,12 +47,11 @@ class AppRoute {
       child: BecomeDonor(),
     ),
 
-
-
-
     AppRoutesName.findDonors: (_) => BlocProvider(
       create: (context) => DonorCubit()..loadDonors(),
       child: FindDonorsView(),
     ),
+    AppRoutesName.notificationView: (_) => const NotificationsView(),
+    AppRoutesName.uploadReportView: (_) => const UploadReportView(),
   };
 }
