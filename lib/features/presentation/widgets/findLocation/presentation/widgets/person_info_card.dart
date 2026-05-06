@@ -1,85 +1,93 @@
 import 'package:blodbank/core/themes/app_color.dart';
+import 'package:blodbank/features/requestBlood/presentation/models/blood_request_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PersonInfoCard extends StatelessWidget {
-  const PersonInfoCard({super.key});
+  final BloodRequestModel request;
+  const PersonInfoCard({super.key, required this.request});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(2),
-      height: .3.sh,
+      padding: const EdgeInsets.all(2),
       width: .9.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.red,
+        color: AppColor.kSecondaryColor,
       ),
-
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
         ),
-
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      'Patient: ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.sp,
+                Expanded(
+                  child: Row(
+                    children: [
+                      Text(
+                        'Patient: ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14.sp,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'Ahmed Mohsen bew bew',
-                      style: TextStyle(fontSize: 12.sp),
-                    ),
-                  ],
+                      Expanded(
+                        child: Text(
+                          request.patientName,
+                          style: TextStyle(fontSize: 12.sp),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(width: 16.w),
                 Container(
-                  height: 28.h,
-                  width: 70.w,
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
-                    color: AppColor.kPrimaryColor,
+                    color: request.urgencyLevel.toLowerCase() == 'critical'
+                        ? AppColor.kPrimaryColor
+                        : Colors.orange,
                   ),
-                  child: Center(
-                    child: Text(
-                      'Critical',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                  child: Text(
+                    request.urgencyLevel,
+                    style: TextStyle(color: Colors.white, fontSize: 12.sp),
                   ),
                 ),
               ],
             ),
+            SizedBox(height: 8.h),
             Row(
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.favorite_border,
-                    color: AppColor.kSecondaryColor,
-                    size: 20.sp,
-                  ),
+                Icon(
+                  Icons.bloodtype_outlined,
+                  color: AppColor.kSecondaryColor,
+                  size: 20.sp,
                 ),
-                Text('A+  |  ', style: TextStyle(color: Colors.grey)),
-                Text('3 Unites', style: TextStyle(color: Colors.grey)),
-                SizedBox(width: 16.w),
-                Icon(Icons.timer_outlined, color: Colors.grey, size: 20.sp),
                 SizedBox(width: 4.w),
-                Text('14 days ago', style: TextStyle(color: Colors.grey)),
+                Text('${request.bloodType}  |  ',
+                    style: const TextStyle(color: Colors.grey)),
+                Text('${request.unitsNeeded} Units',
+                    style: const TextStyle(color: Colors.grey)),
+                const Spacer(),
+                const Icon(Icons.timer_outlined, color: Colors.grey, size: 18),
+                SizedBox(width: 4.w),
+                const Text('Just now', style: TextStyle(color: Colors.grey)),
               ],
             ),
+            SizedBox(height: 8.h),
             Text(
-              'Patient requires urgent blood transfusion due to surgery.',
-              style: TextStyle(fontSize: 14.sp, color: Colors.grey),
+              request.description,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 13.sp, color: Colors.black87),
             ),
             SizedBox(height: 12.h),
             Row(
@@ -87,16 +95,18 @@ class PersonInfoCard extends StatelessWidget {
                 Icon(
                   Icons.location_on_outlined,
                   color: Colors.grey,
-                  size: 20.sp,
+                  size: 18.sp,
                 ),
                 SizedBox(width: 4.w),
-                Text(
-                  'City genral hospital',
-                  style: TextStyle(color: Colors.grey),
+                Expanded(
+                  child: Text(
+                    request.location,
+                    style: const TextStyle(color: Colors.grey),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
-
             SizedBox(height: 16.h),
             Row(
               children: [
@@ -121,7 +131,8 @@ class PersonInfoCard extends StatelessWidget {
                           'I Can Help',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16.sp,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
@@ -137,19 +148,8 @@ class PersonInfoCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: Colors.grey),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.call, color: Colors.black, size: 18.sp),
-                        SizedBox(width: 4.w),
-                        Text(
-                          'Call',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.sp,
-                          ),
-                        ),
-                      ],
+                    child: Center(
+                      child: Icon(Icons.call, color: Colors.black, size: 18.sp),
                     ),
                   ),
                 ),

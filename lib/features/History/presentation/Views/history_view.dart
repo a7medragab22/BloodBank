@@ -1,4 +1,3 @@
-import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/History/data/models/history_model.dart';
 import 'package:blodbank/features/History/presentation/Widgets/history_card.dart';
@@ -51,61 +50,7 @@ class _HistoryViewState extends State<HistoryView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FB),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          'Donation History',
-          style: TextStyle(
-            color: const Color(0xFF2D3142),
-            fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => _onSearch(context),
-            icon: const Icon(Icons.search, color: Color(0xFF2D3142)),
-          ),
-          IconButton(
-            onPressed: () => _onToggleTheme(context),
-            icon: const Icon(Icons.wb_sunny_outlined, color: Color(0xFF2D3142)),
-          ),
-          Stack(
-            children: [
-              IconButton(
-                onPressed: () => Navigator.pushNamed(
-                  context,
-                  AppRoutesName.notificationView,
-                ),
-                icon: const Icon(
-                  Icons.notifications_none,
-                  color: Color(0xFF2D3142),
-                ),
-              ),
-              Positioned(
-                right: 8,
-                top: 8,
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Text(
-                    '1',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
         child: Column(
@@ -156,18 +101,6 @@ class _HistoryViewState extends State<HistoryView> {
           ],
         ),
       ),
-    );
-  }
-
-  void _onSearch(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Search functionality coming soon!')),
-    );
-  }
-
-  void _onToggleTheme(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Theme toggling coming soon!')),
     );
   }
 

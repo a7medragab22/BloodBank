@@ -13,4 +13,6 @@ class AppRoutesName {
   static const String findDonors = 'findDonors';
   static const String notificationView = 'notificationView';
   static const String uploadReportView = 'uploadReportView';
+  static const String personRequests = 'personRequests';
+  static const String hospitals = 'hospitals';
 }

@@ -1,6 +1,5 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_second_button.dart';
 import 'package:blodbank/core/themes/app_color.dart';
-import 'package:blodbank/features/requestBlood/presentation/cubits/bloodRequest/blood_request_cubit.dart';
 import 'package:blodbank/features/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
 import 'package:blodbank/features/requestBlood/presentation/widgets/blood_request_sheet.dart';
 import 'package:blodbank/features/requestBlood/presentation/widgets/donor_card.dart';
@@ -80,10 +79,7 @@ class FindDonorsView extends StatelessWidget {
               context: context,
               isScrollControlled: true,
               backgroundColor: Colors.transparent,
-              builder: (_) => BlocProvider(
-                create: (_) => BloodRequestCubit(),
-                child: const BloodRequestSheet(),
-              ),
+              builder: (_) => const BloodRequestSheet(),
             );
           },
         ),

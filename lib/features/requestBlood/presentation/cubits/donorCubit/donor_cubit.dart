@@ -53,6 +53,11 @@ class DonorCubit extends Cubit<DonorState> {
     emit(DonorLoaded(allDonors));
   }
 
+  void addDonor(DonorModel donor) {
+    allDonors.insert(0, donor); // Add to the top
+    emit(DonorLoaded(allDonors));
+  }
+
   Future<void> callDonor(String phoneNumber) async {
     try {
       await phoneService.makePhoneCall(phoneNumber);

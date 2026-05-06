@@ -65,65 +65,45 @@ class DonorInfoCard extends StatelessWidget {
               flex: 2,
               child: Column(
                 children: [
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8.h,
-                        horizontal: 8.w,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.r),
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'Assets/images/blod_logo.png',
-                            width: 50.w,
-                            height: 50.h,
-                          ),
-                          Text(
-                            'Blood Type',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  const Expanded(
+                    child: SizedBox.shrink(), // Placeholder for future content
                   ),
                   SizedBox(height: 8.h),
                   Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8.h,
-                        horizontal: 8.w,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.r),
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'Assets/images/blod_logo.png',
-                            width: 50.w,
-                            height: 50.h,
-                          ),
-                          Text(
-                            'Number of donations',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.sp,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutesName.hospitals);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 8.h,
+                          horizontal: 8.w,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.r),
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.local_hospital_outlined,
+                              color: AppColor.kSecondaryColor,
+                              size: 30.sp,
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 4.h),
+                            Text(
+                              'Hospitals',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.grey[700],
+                                fontWeight: FontWeight.w600,
+                                fontSize: 11.sp,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

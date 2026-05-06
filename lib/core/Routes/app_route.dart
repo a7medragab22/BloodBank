@@ -18,6 +18,8 @@ import 'package:blodbank/features/auth/presentation/screens/forget_password/new_
 import 'package:blodbank/features/auth/presentation/screens/initial_view.dart';
 import 'package:blodbank/features/auth/presentation/screens/login_screen.dart';
 import 'package:blodbank/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:blodbank/features/presentation/widgets/findLocation/presentation/views/hospitals_view.dart';
+import 'package:blodbank/features/presentation/widgets/findLocation/presentation/views/person_requests_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +38,7 @@ class AppRoute {
     AppRoutesName.newPassword: (_) => NewPassword(),
     AppRoutesName.forgetPassword: (_) => ForgetPassword(),
     AppRoutesName.checkEmail: (_) => CheckEmail(),
-    AppRoutesName.donateView: (_) => DonateView(),
+    AppRoutesName.donateView: (_) => const DonateView(),
     AppRoutesName.navigationBBar: (_) => BlocProvider(
       create: (context) => NavigationCubit(),
       child: const NavigationBBar(),
@@ -47,11 +49,13 @@ class AppRoute {
       child: BecomeDonor(),
     ),
 
-    AppRoutesName.findDonors: (_) => BlocProvider(
-      create: (context) => DonorCubit()..loadDonors(),
-      child: FindDonorsView(),
-    ),
+    AppRoutesName.findDonors: (_) => const FindDonorsView(),
     AppRoutesName.notificationView: (_) => const NotificationsView(),
     AppRoutesName.uploadReportView: (_) => const UploadReportView(),
+    AppRoutesName.personRequests: (_) => const PersonRequestsView(),
+    AppRoutesName.hospitals: (_) => BlocProvider(
+      create: (context) => FindHospitaCubit()..loadHospital(),
+      child: const HospitalsView(),
+    ),
   };
 }

@@ -3,13 +3,16 @@ import 'package:blodbank/features/requestBlood/presentation/cubits/bloodRequest/
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PersonTap extends StatelessWidget {
-  const PersonTap({super.key});
+class PersonRequestsView extends StatelessWidget {
+  const PersonRequestsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 243, 243, 243),
+      appBar: AppBar(
+        title: const Text('Person Requests', style: TextStyle(fontSize: 18)),
+      ),
       body: BlocBuilder<BloodRequestCubit, BloodRequestState>(
         builder: (context, state) {
           final cubit = context.read<BloodRequestCubit>();
@@ -41,37 +44,3 @@ class PersonTap extends StatelessWidget {
     );
   }
 }
-
-// Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     Container(
-          //       height: 40.h,
-          //       width: 140.w,
-          //       decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(8.r),
-          //         color: Colors.black.withValues(alpha: .88),
-          //       ),
-          //       child: Center(
-          //         child: Text(
-          //           '🔍    Find Donors',
-          //           style: TextStyle(color: Colors.white),
-          //         ),
-          //       ),
-          //     ),
-          //     Container(
-          //       height: 40.h,
-          //       width: 140.w,
-          //       decoration: BoxDecoration(
-          //         borderRadius: BorderRadius.circular(8),
-          //         color: AppColor.kSecondaryColor,
-          //       ),
-          //       child: Center(
-          //         child: Text(
-          //           '+    New Request',
-          //           style: TextStyle(color: Colors.white),
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),

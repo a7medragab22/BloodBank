@@ -13,106 +13,146 @@ class DonorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  donor.name,
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 15,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20.r),
+        child: IntrinsicHeight(
+          child: Row(
+            children: [
+              // Blood Group Side Bar
+              Container(
+                width: 70.w,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppColor.kSecondaryColor,
+                      AppColor.kSecondaryColor.withOpacity(0.8),
+                    ],
                   ),
                 ),
-                Spacer(),
-                StatusChip(text: "Available", color: Colors.green.shade100),
-              ],
-            ),
-
-            SizedBox(height: 8.h),
-            Row(
-              children: [
-                Icon(
-                  Icons.favorite_outline,
-                  size: 18.sp,
-                  color: AppColor.kPrimaryColor,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.bloodtype,
+                      color: Colors.white.withOpacity(0.9),
+                      size: 24.sp,
+                    ),
+                    SizedBox(height: 4.h),
+                    Text(
+                      donor.bloodGroup,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 4.w),
-                Text(donor.bloodGroup, style: TextStyle(color: Colors.grey)),
-                SizedBox(width: 16.w),
-                Icon(Icons.person_outline, size: 18.sp, color: Colors.grey),
-                SizedBox(width: 4.w),
-                Text(donor.age, style: TextStyle(color: Colors.grey)),
-              ],
-            ),
-            SizedBox(height: 4.h),
-            Row(
-              children: [
-                Icon(
-                  Icons.location_on_outlined,
-                  size: 18.sp,
-                  color: Colors.grey,
-                ),
-                SizedBox(width: 4.w),
-                Text(
-                  "${donor.distance} miles away",
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-            SizedBox(height: 4.h),
-            Row(
-              children: [
-                Icon(
-                  Icons.access_time_outlined,
-                  size: 18.sp,
-                  color: Colors.grey,
-                ),
-                SizedBox(width: 4.w),
-                Expanded(
-                  child: Row(
+              ),
+              // Content Section
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(16.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Last donation: '),
-                      Text(
-                        "${donor.lastDonationMonth} months ago",
-                        style: TextStyle(color: Colors.grey),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Potential Donor",
+                            style: TextStyle(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF2D3142),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                            decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                            child: Text(
+                              "Available",
+                              style: TextStyle(
+                                color: Colors.green.shade700,
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 12.h),
+                      Row(
+                        children: [
+                          Icon(Icons.location_on_outlined, size: 16.sp, color: Colors.grey),
+                          SizedBox(width: 4.w),
+                          Text(
+                            "${donor.distance} miles away",
+                            style: TextStyle(color: Colors.grey, fontSize: 12.sp),
+                          ),
+                          const Spacer(),
+                          Icon(Icons.access_time, size: 16.sp, color: Colors.grey),
+                          SizedBox(width: 4.w),
+                          Text(
+                            "${donor.lastDonationMonth}m ago",
+                            style: TextStyle(color: Colors.grey, fontSize: 12.sp),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 16.h),
+                      ElevatedButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: const Text('Match request sent successfully!'),
+                              backgroundColor: Colors.green.shade600,
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF2D3142),
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+                          minimumSize: Size(double.infinity, 40.h),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                        ),
+                        child: Text(
+                          'Request Match',
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 8.h),
-            Row(
-              children: [
-                Expanded(
-                  child: CustomSecondButton(
-                    text: 'contact',
-                    onPressed: () {
-                      context.read<DonorCubit>().callDonor(donor.phoneNumber);
-                    },
-                  ),
-                ),
-                SizedBox(width: 10.w),
-                Expanded(
-                  child: CustomSecondButton(
-                    text: 'message',
-                    backgroundColor: Colors.grey.shade300,
-                    textColor: Colors.black,
-
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
