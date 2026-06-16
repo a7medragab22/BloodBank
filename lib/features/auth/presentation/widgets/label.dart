@@ -11,7 +11,13 @@ class Label extends StatelessWidget {
     this.textFieldBodyColor = Colors.transparent,
     this.hintColor = Colors.black,
     this.textAlign = TextAlign.right,
-    this.preffixIcon, this.onChanged,
+    this.preffixIcon,
+    this.onChanged,
+    this.keyboardType,
+    this.controller,
+    this.readOnly = false,
+    this.onTap,
+    this.validator,
   });
   final String text, hintText;
   final InputBorder? border;
@@ -20,6 +26,11 @@ class Label extends StatelessWidget {
   final TextAlign textAlign;
   final IconData? preffixIcon;
   final void Function(String)? onChanged;
+  final TextInputType? keyboardType;
+  final TextEditingController? controller;
+  final bool readOnly;
+  final VoidCallback? onTap;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +55,11 @@ class Label extends StatelessWidget {
             textAlign: textAlign,
             preffixIcon: preffixIcon,
             onChanged: onChanged,
+            keyboardType: keyboardType,
+            controller: controller,
+            readOnly: readOnly,
+            onTap: onTap,
+            validator: validator,
           ),
         ),
       ],

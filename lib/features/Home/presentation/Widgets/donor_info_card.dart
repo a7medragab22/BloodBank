@@ -1,3 +1,4 @@
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,34 +20,40 @@ class DonorInfoCard extends StatelessWidget {
             /// LEFT CARD
             Expanded(
               flex: 2,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 8.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.r),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Regenration cycle',
-                      style: TextStyle(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutesName.uploadReportView);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16.r),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.cloud_upload_outlined,
                         color: AppColor.kSecondaryColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14.sp,
+                        size: 40.sp,
                       ),
-                    ),
-                    Image.asset(
-                      'Assets/images/blod_logo.png',
-                      width: 90.w,
-                      height: 90.h,
-                      fit: BoxFit.contain,
-                    ),
-                    Text(
-                      '90 days passed',
-                      style: TextStyle(fontSize: 13.sp, color: Colors.grey),
-                    ),
-                  ],
+                      SizedBox(height: 8.h),
+                      Text(
+                        'Upload Tests',
+                        style: TextStyle(
+                          color: AppColor.kSecondaryColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                      SizedBox(height: 4.h),
+                      Text(
+                        'Medical Reports',
+                        style: TextStyle(fontSize: 11.sp, color: Colors.grey),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -58,65 +65,45 @@ class DonorInfoCard extends StatelessWidget {
               flex: 2,
               child: Column(
                 children: [
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8.h,
-                        horizontal: 8.w,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.r),
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'Assets/images/blod_logo.png',
-                            width: 50.w,
-                            height: 50.h,
-                          ),
-                          Text(
-                            'Blood Type',
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  const Expanded(
+                    child: SizedBox.shrink(), // Placeholder for future content
                   ),
                   SizedBox(height: 8.h),
                   Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8.h,
-                        horizontal: 8.w,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.r),
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'Assets/images/blod_logo.png',
-                            width: 50.w,
-                            height: 50.h,
-                          ),
-                          Text(
-                            'Number of donations',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.sp,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutesName.hospitals);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 8.h,
+                          horizontal: 8.w,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.r),
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.local_hospital_outlined,
+                              color: AppColor.kSecondaryColor,
+                              size: 30.sp,
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 4.h),
+                            Text(
+                              'Hospitals',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.grey[700],
+                                fontWeight: FontWeight.w600,
+                                fontSize: 11.sp,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

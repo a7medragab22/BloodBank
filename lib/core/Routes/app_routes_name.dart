@@ -10,4 +10,9 @@ class AppRoutesName {
   static const String navigationBBar = 'NavigationBBar';
   static const String profileView = 'ProfileView';
   static const String findHospital = 'findHospital';
+  static const String findDonors = 'findDonors';
+  static const String notificationView = 'notificationView';
+  static const String uploadReportView = 'uploadReportView';
+  static const String personRequests = 'personRequests';
+  static const String hospitals = 'hospitals';
 }

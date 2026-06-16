@@ -1,3 +1,4 @@
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/History/presentation/Views/history_view.dart';
 import 'package:blodbank/features/Home/presentation/Views/home_view.dart';
@@ -37,7 +38,9 @@ class NavigationBBar extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRoutesName.notificationView);
+                },
                 icon: Icon(Icons.notifications_none),
               ),
             ],
@@ -65,7 +68,7 @@ class NavigationBBar extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(FontAwesomeIcons.gift, size: 20),
-                label: 'Rewords',
+                label: 'Rewards',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline),
