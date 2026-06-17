@@ -8,7 +8,7 @@ class CustomButtons extends StatelessWidget {
   final double? width;
   final double? height;
   final double borderRadius;
-  final Color? borderColor;   // ✅ نوعها Color
+  final Color? borderColor;
   final double borderWidth;
 
   const CustomButtons({
@@ -33,9 +33,10 @@ class CustomButtons extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor ?? Colors.green,
           elevation: 0,
+          minimumSize: Size(width ?? double.infinity, height ?? 33),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
-            side: BorderSide(                     // ✅ هنا البوردر الصح
+            side: BorderSide(
               color: borderColor ?? Colors.transparent,
               width: borderWidth,
             ),

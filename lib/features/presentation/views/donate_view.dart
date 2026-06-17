@@ -203,7 +203,6 @@ class _DonateViewState extends State<DonateView> {
                         return;
                       }
 
-                      // Success - Add Donor
                       final newDonor = DonorModel(
                         name: 'New Donor (You)',
                         phoneNumber: '0123456789',
@@ -228,7 +227,6 @@ class _DonateViewState extends State<DonateView> {
                         ),
                       );
 
-                      // Navigate to Person Requests View after registration
                       Navigator.pushReplacementNamed(
                         context,
                         AppRoutesName.personRequests,

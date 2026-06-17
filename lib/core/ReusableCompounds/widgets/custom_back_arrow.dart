@@ -36,7 +36,6 @@ class CustomBackArrow extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // أيقونة داخل دائرة
               showIcon == true
                   ? IconFAvouriteWithBackArrow(icon: icon)
                   : SizedBox(),
@@ -50,7 +49,6 @@ class CustomBackArrow extends StatelessWidget {
                       ),
                     )
                   : SizedBox(),
-              // السهم
               Icon(Icons.arrow_forward_ios, color: arrowColor, size: 24),
             ],
           ),

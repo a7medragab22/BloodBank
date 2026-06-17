@@ -10,9 +10,20 @@ class UserLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.location_on_outlined, color: AppColor.kPrimaryColor),
+        Icon(
+          Icons.location_on,
+          color: AppColor.kSecondaryColor,
+          size: 16.sp,
+        ),
         SizedBox(width: 4.w),
-        Text('Cairo, Egypt', style: TextStyle(fontSize: 16.sp)),
+        Text(
+          'Riyadh, Saudi Arabia',
+          style: TextStyle(
+            fontSize: 13.sp,
+            color: Colors.grey[600],
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ],
     );
   }

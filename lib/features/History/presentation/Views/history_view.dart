@@ -1,10 +1,8 @@
-import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/History/data/models/history_model.dart';
 import 'package:blodbank/features/History/presentation/Widgets/history_card.dart';
 import 'package:blodbank/features/History/presentation/Widgets/history_stats_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 
 class HistoryView extends StatefulWidget {
   const HistoryView({super.key});
@@ -17,224 +15,129 @@ class _HistoryViewState extends State<HistoryView> {
   List<HistoryModel> historyList = [
     HistoryModel(
       id: '1',
-      type: 'Plasma',
-      details: '600ml • O+',
-      dateTime: '2024-08-15 at 11:00 AM',
-      hospital: "Children's Hospital",
+      role: 'Donor',
       status: 'Scheduled',
+      dateTime: '15 Aug 2024 - 11:00 AM',
+      hospitalName: "Children's Hospital",
+      hospitalLocation: 'Cairo, Egypt',
       isScheduled: true,
     ),
     HistoryModel(
       id: '2',
-      type: 'Platelets',
-      details: '2 units • O+',
-      dateTime: '2024-02-20 at 2:00 PM',
-      hospital: "St. Mary's Medical Center",
-      pointsEarned: '+150 reward points earned',
+      role: 'Recipient',
       status: 'Completed',
+      dateTime: '20 Feb 2024 - 2:00 PM',
+      hospitalName: "St. Mary's Medical Center",
+      hospitalLocation: 'Nasr City, Cairo',
+      points: '100',
+      isPointsEarned: false,
       isScheduled: false,
     ),
     HistoryModel(
       id: '3',
-      type: 'Whole Blood',
-      details: '450ml • O+',
-      dateTime: '2024-01-15 at 10:00 AM',
-      hospital: "City General Hospital",
-      pointsEarned: '+100 reward points earned',
+      role: 'Donor',
       status: 'Completed',
+      dateTime: '15 Jan 2024 - 10:00 AM',
+      hospitalName: "City General Hospital",
+      hospitalLocation: 'Giza, Egypt',
+      points: '150',
+      isPointsEarned: true,
       isScheduled: false,
     ),
   ];
 
+  int _getCompletedCount() {
+    return historyList.where((item) => item.status == 'Completed').length;
+  }
+
+  int _getTotalPoints() {
+    int total = 0;
+    for (var item in historyList) {
+      if (item.points != null) {
+        final points = int.tryParse(item.points!) ?? 0;
+        if (item.isPointsEarned) {
+          total += points;
+        } else {
+          total -= points;
+        }
+      }
+    }
+    return total;
+  }
+
+  int _getUpcomingCount() {
+    return historyList.where((item) => item.isScheduled).length;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FB),
-
+      backgroundColor: const Color(0xFFFAFAFA),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Donation History',
+              'Activity History',
               style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xFF2D3142),
-              ),
-            ),
-            SizedBox(height: 16.h),
-            const HistoryStatsSection(),
-            SizedBox(height: 24.h),
-            ...historyList.map(
-              (item) => HistoryCard(
-                key: ValueKey(item.id),
-                type: item.type,
-                details: item.details,
-                dateTime: item.dateTime,
-                hospital: item.hospital,
-                pointsEarned: item.pointsEarned,
-                status: item.status,
-                isScheduled: item.isScheduled,
-                onReschedule: () => _onReschedule(context, item),
-                onCancel: () => _showCancelDialog(context, item),
-                onDelete: () => _showDeleteDialog(context, item),
-              ),
-            ),
-            SizedBox(height: 24.h),
-            Center(
-              child: TextButton(
-                onPressed: () => _onDownloadHistory(context),
-                child: Text(
-                  'Download Complete History',
-                  style: TextStyle(
-                    color: AppColor.kSecondaryColor,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w700,
+                color: const Color(0xFF1F2937),
               ),
             ),
             SizedBox(height: 20.h),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _onReschedule(BuildContext context, HistoryModel item) async {
-    final DateTime? pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2025),
-    );
-
-    if (pickedDate != null) {
-      final TimeOfDay? pickedTime = await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.now(),
-      );
-
-      if (pickedTime != null) {
-        // Mock API call
-        _showLoading(context, 'Saving new schedule...');
-        await Future.delayed(const Duration(seconds: 1));
-        Navigator.pop(context); // Close loading
-
-        setState(() {
-          final formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-          final formattedTime = pickedTime.format(context);
-          item.dateTime = '$formattedDate at $formattedTime';
-        });
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              '${item.type} donation rescheduled to ${item.dateTime}',
+            HistoryStatsSection(
+              completedCases: _getCompletedCount(),
+              totalPoints: _getTotalPoints(),
+              upcomingCases: _getUpcomingCount(),
             ),
-          ),
-        );
-      }
-    }
-  }
-
-  void _showCancelDialog(BuildContext context, HistoryModel item) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Cancel Donation'),
-        content: Text(
-          'Are you sure you want to cancel your ${item.type} donation?',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('No'),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context);
-              _showLoading(context, 'Cancelling donation...');
-              await Future.delayed(const Duration(seconds: 1));
-              Navigator.pop(context); // Close loading
-
-              setState(() {
-                historyList.removeWhere((e) => e.id == item.id);
-              });
-
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('${item.type} donation has been cancelled.'),
+            SizedBox(height: 24.h),
+            if (historyList.isEmpty)
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40.h),
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.history,
+                        size: 64.sp,
+                        color: Colors.grey.withOpacity(0.3),
+                      ),
+                      SizedBox(height: 16.h),
+                      Text(
+                        'No Activity Yet',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Text(
+                        'Your activities will appear here',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.grey[500],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              );
-            },
-            child: const Text(
-              'Yes, Cancel',
-              style: TextStyle(color: Colors.red),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showDeleteDialog(BuildContext context, HistoryModel item) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Delete Record'),
-        content: Text(
-          'Delete this ${item.type} donation record from your history?',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context);
-              _showLoading(context, 'Deleting record...');
-              await Future.delayed(const Duration(milliseconds: 500));
-              Navigator.pop(context); // Close loading
-
-              setState(() {
-                historyList.removeWhere((e) => e.id == item.id);
-              });
-
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('${item.type} record deleted.')),
-              );
-            },
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showLoading(BuildContext context, String message) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        content: Row(
-          children: [
-            const CircularProgressIndicator(),
-            SizedBox(width: 20.w),
-            Text(message),
+              )
+            else
+              Column(
+                children: [
+                  ...historyList.map(
+                    (item) =>
+                        HistoryCard(key: ValueKey(item.id), historyModel: item),
+                  ),
+                  SizedBox(height: 16.h),
+                ],
+              ),
           ],
         ),
       ),
-    );
-  }
-
-  void _onDownloadHistory(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('History PDF generated and downloading...')),
     );
   }
 }

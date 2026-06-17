@@ -31,7 +31,6 @@ class DonorCard extends StatelessWidget {
         child: IntrinsicHeight(
           child: Row(
             children: [
-              // Blood Group Side Bar
               Container(
                 width: 70.w,
                 decoration: BoxDecoration(
@@ -64,7 +63,6 @@ class DonorCard extends StatelessWidget {
                   ],
                 ),
               ),
-              // Content Section
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(16.w),

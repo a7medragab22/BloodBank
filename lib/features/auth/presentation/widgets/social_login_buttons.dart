@@ -21,8 +21,8 @@ class SocialLoginButtons extends StatelessWidget {
       width: 60.w,
       height: 60.h,
       decoration: BoxDecoration(
-        color: const Color(0xFFF2F0ED), // لون الخلفية الفاتح
-        borderRadius: BorderRadius.circular(20), // الزوايا الدائرية
+        color: const Color(0xFFF2F0ED),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Center(child: Image.asset(asset, width: 28.w, height: 28.h)),
     );

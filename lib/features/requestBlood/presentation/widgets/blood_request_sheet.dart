@@ -68,7 +68,6 @@ class _BloodRequestSheetState extends State<BloodRequestSheet> {
 
                     _buildTextField("Patient Name", patientController),
 
-                    /// Blood Type + Units
                     Row(
                       children: [
                         Expanded(
@@ -103,7 +102,6 @@ class _BloodRequestSheetState extends State<BloodRequestSheet> {
                       ],
                     ),
 
-                    /// Urgency
                     _buildDropdown(
                       hint: "Urgency Level",
                       value: urgencyLevel,
