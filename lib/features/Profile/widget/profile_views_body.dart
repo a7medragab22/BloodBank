@@ -1,211 +1,63 @@
-import 'package:blodbank/features/Profile/widget/profile_info.dart';
+import 'package:blodbank/core/custom_Buttoms.dart';
+import 'package:blodbank/core/themes/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:blodbank/features/Profile/widget/profile_info.dart';
 
 class ProfileViewsBody extends StatelessWidget {
   const ProfileViewsBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       child: Column(
         children: [
-          ProfileInfo(),
-          SizedBox(height: 22),
-          Row(
-            children: [
-              SizedBox(width: screenWidth * 0.1),
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(Icons.email, color: Colors.red),
-              ),
-              SizedBox(width: 22),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Email',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      'ajitteaches@gmail.com',
-                      style: TextStyle(fontSize: 16, color: Colors.black87),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          const ProfileInfo(),
+          // Helper to create info cards
+          _infoCard(
+            icon: Icons.email,
+            title: 'Email',
+            value: 'ajitteaches@gmail.com',
           ),
-          SizedBox(height: 45),
-          Row(
-            children: [
-              SizedBox(width: screenWidth * 0.1),
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(Icons.location_on, color: Colors.red),
-              ),
-              SizedBox(width: 22),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Address',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      '123 main st',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      'Bhubaneswar',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          _infoCard(
+            icon: Icons.location_on,
+            title: 'Address',
+            value: '123 Main St, Bhubaneswar',
           ),
-          SizedBox(height: 45),
-          Row(
-            children: [
-              SizedBox(width: screenWidth * 0.1),
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(Icons.calendar_today, color: Colors.red),
-              ),
-              SizedBox(width: 22),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'DoB ',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      '5th october,1889',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          _infoCard(
+            icon: Icons.cake,
+            title: 'Date of Birth',
+            value: '5 Oct 1889',
           ),
-          SizedBox(height: 45),
-          Row(
-            children: [
-              SizedBox(width: screenWidth * 0.1),
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(Icons.bloodtype, color: Colors.red),
-              ),
-              SizedBox(width: 22),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Last donated',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      '2nd  February,2022',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          _infoCard(
+            icon: Icons.bloodtype,
+            title: 'Last Donated',
+            value: '2 Feb 2022',
           ),
-          SizedBox(height: 45),
-          Row(
-            children: [
-              SizedBox(width: screenWidth * 0.1),
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: Colors.pink.shade100,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(Icons.bloodtype, color: Colors.red),
-              ),
-              SizedBox(width: 22),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Total units donated',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      '0 unit',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black87,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          _infoCard(
+            icon: Icons.favorite,
+            title: 'Total Units Donated',
+            value: '0',
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _infoCard({required IconData icon, required String title, required String value}) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      elevation: 2,
+      margin: EdgeInsets.symmetric(vertical: 8.h),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: AppColor.kPrimaryColor.withOpacity(0.1),
+          child: Icon(icon, color: AppColor.kPrimaryColor),
+        ),
+        title: Text(title, style: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w500)),
+        subtitle: Text(value, style: GoogleFonts.inter(fontSize: 14, color: Colors.black87)),
       ),
     );
   }

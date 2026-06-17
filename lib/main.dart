@@ -32,7 +32,6 @@ class BlodBannk extends StatelessWidget {
     );
   }
 }
-  
 
 
 
@@ -41,16 +40,3 @@ class BlodBannk extends StatelessWidget {
 
 
 
-
-    // routes: {
-    //       InitialView.id: (context) => InitialView(),
-    //       LoginScreen.id: (context) => LoginScreen(),
-    //       SignUpScreen.id: (context) => SignUpScreen(),
-    //       NewPassword.id: (context) => NewPassword(),
-    //       ForgetPassword.id: (context) => ForgetPassword(),
-    //       CheckEmail.id: (context) => CheckEmail(),
-    //       CheckCode.id: (context) => CheckCode(),
-    //       NavigationBBar.id: (context) => NavigationBBar(),
-    //       DonateView.id: (context) => DonateView(),
-    //       RequestBlodView.id: (context) => RequestBlodView(),
-    //     },
