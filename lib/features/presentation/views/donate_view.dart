@@ -23,6 +23,37 @@ class _DonateViewState extends State<DonateView> {
   String bloodType = 'A+';
   double weight = 50;
   String gender = 'male';
+  String? _selectedCity;
+
+  final List<String> _egyptCities = const [
+    'Alexandria',
+    'Aswan',
+    'Asyut',
+    'Beheira',
+    'Beni Suef',
+    'Cairo',
+    'Dakahlia',
+    'Damietta',
+    'Faiyum',
+    'Gharbia',
+    'Giza',
+    'Ismailia',
+    'Kafr El Sheikh',
+    'Luxor',
+    'Matruh',
+    'Minya',
+    'Monufia',
+    'New Valley',
+    'North Sinai',
+    'Port Said',
+    'Qalyubia',
+    'Qena',
+    'Red Sea',
+    'Sharqia',
+    'Sohag',
+    'South Sinai',
+    'Suez',
+  ];
 
   @override
   void dispose() {
@@ -90,6 +121,61 @@ class _DonateViewState extends State<DonateView> {
                     }
                     return null;
                   },
+                ),
+                SizedBox(height: 8.h),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'your location',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                    SizedBox(height: 12.h),
+                    DropdownButtonFormField<String>(
+                      initialValue: _selectedCity,
+                      hint: Text(
+                        'chose your city',
+                        style: TextStyle(color: Colors.black, fontSize: 14.sp),
+                      ),
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 16,
+                          horizontal: 16,
+                        ),
+                        prefixIcon: Icon(
+                          Icons.map_outlined,
+                          color: AppColor.kSecondaryColor,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      items: _egyptCities.map((String city) {
+                        return DropdownMenuItem<String>(
+                          value: city,
+                          child: Text(
+                            city,
+                            style: TextStyle(fontSize: 14.sp),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _selectedCity = newValue;
+                        });
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please select your city';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
                 ),
                 SizedBox(height: 16.h),
                 ChoseGender(onChanged: (val) => setState(() => gender = val)),
