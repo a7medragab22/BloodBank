@@ -6,6 +6,8 @@ class FindHospitalModel {
   final String time;
   final String phone;
   final String availability;
+  final String? mapsQuery;
+
   FindHospitalModel({
     required this.name,
     required this.address,
@@ -14,5 +16,6 @@ class FindHospitalModel {
     required this.time,
     required this.phone,
     required this.availability,
+    this.mapsQuery,
   });
 }

@@ -9,13 +9,14 @@ class FindHospitaCubit extends Cubit<FindHospitalState> {
     emit(
       FindHospitalLoaded([
         FindHospitalModel(
-          name: 'City General Hospital',
+          name: '6th Of October University Hospital',
           address: '123 Main Street, Downtown',
           distance: 0.8,
           rating: 4.8,
           time: '~15 min',
           phone: '(+20) 1091244780',
           availability: '24/7 ',
+          mapsQuery: 'XXH2+G4 First 6th of October',
         ),
         FindHospitalModel(
           name: 'City General Hospital',

@@ -1,15 +1,35 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_second_button.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
-import 'package:blodbank/features/requestBlood/presentation/widgets/blood_request_sheet.dart';
+import 'package:blodbank/features/requestBlood/presentation/views/blood_request_view.dart';
 import 'package:blodbank/features/requestBlood/presentation/widgets/donor_card.dart';
 import 'package:blodbank/features/requestBlood/presentation/widgets/filter_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FindDonorsView extends StatelessWidget {
+class FindDonorsView extends StatefulWidget {
   const FindDonorsView({super.key});
+
+  @override
+  State<FindDonorsView> createState() => _FindDonorsViewState();
+}
+
+class _FindDonorsViewState extends State<FindDonorsView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showRequestView();
+    });
+  }
+
+  void _showRequestView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const BloodRequestView()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,14 +94,7 @@ class FindDonorsView extends StatelessWidget {
           text: '+ New Request',
           height: 40.h,
           width: .4.sw,
-          onPressed: () {
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              backgroundColor: Colors.transparent,
-              builder: (_) => const BloodRequestSheet(),
-            );
-          },
+          onPressed: _showRequestView,
         ),
         SizedBox(width: 16.w),
       ],

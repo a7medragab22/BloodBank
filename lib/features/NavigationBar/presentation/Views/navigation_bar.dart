@@ -1,4 +1,3 @@
-import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/History/presentation/Views/history_view.dart';
 import 'package:blodbank/features/Home/presentation/Views/home_view.dart';
@@ -58,38 +57,9 @@ class NavigationBBar extends StatelessWidget {
           const ProfileView(), // index 4
         ];
 
-        final isHome = state.status == NavigationStatus.home;
-
         return Scaffold(
           backgroundColor: const Color(0xFFFAFAFA),
-          appBar: isHome
-              ? null
-              : AppBar(
-                  backgroundColor: Colors.white,
-                  elevation: 0,
-                  title: Text(
-                    'LifeFlow',
-                    style: TextStyle(
-                      color: AppColor.kSecondaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.sp,
-                    ),
-                  ),
-                  actions: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          AppRoutesName.notificationView,
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.notifications_none,
-                        color: Colors.black87,
-                      ),
-                    ),
-                  ],
-                ),
+
           body: pages[cubit.statusToIndex(state.status)],
           bottomNavigationBar: Container(
             decoration: BoxDecoration(

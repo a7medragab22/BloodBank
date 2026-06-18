@@ -2,10 +2,8 @@ import 'package:blodbank/core/ReusableCompounds/widgets/custom_button.dart';
 import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/auth/presentation/widgets/label.dart';
-import 'package:blodbank/features/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
 import 'package:blodbank/features/requestBlood/presentation/models/donor_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DonateView extends StatefulWidget {
@@ -23,6 +21,37 @@ class _DonateViewState extends State<DonateView> {
   String bloodType = 'A+';
   double weight = 50;
   String gender = 'male';
+  String? _selectedCity;
+
+  final List<String> _egyptianCities = const [
+    'Alexandria (الإسكندرية)',
+    'Aswan (أسوان)',
+    'Asyut (أسيوط)',
+    'Beheira (البحيرة)',
+    'Beni Suef (بني سويف)',
+    'Cairo (القاهرة)',
+    'Dakahlia (الدقهلية)',
+    'Damietta (دمياط)',
+    'Faiyum (الفيوم)',
+    'Gharbia (الغربية)',
+    'Giza (الجيزة)',
+    'Ismailia (الإسماعيلية)',
+    'Kafr El Sheikh (كفر الشيخ)',
+    'Luxor (الأقصر)',
+    'Matrouh (مرسى مطروح)',
+    'Minya (المنيا)',
+    'Monufia (المنوفية)',
+    'New Valley (الوادي الجديد)',
+    'North Sinai (شمال سيناء)',
+    'Port Said (بورسعيد)',
+    'Qalyubia (القليوبية)',
+    'Qena (قنا)',
+    'Red Sea (البحر الأحمر)',
+    'Sharqia (الشرقية)',
+    'Sohag (سوهاج)',
+    'South Sinai (جنوب سيناء)',
+    'Suez (السويس)',
+  ];
 
   @override
   void dispose() {
@@ -91,6 +120,25 @@ class _DonateViewState extends State<DonateView> {
                     return null;
                   },
                 ),
+                SizedBox(height: 8.h),
+                LabelDropdown(
+                  text: 'your location',
+                  hintText: 'chose your city',
+                  value: _selectedCity,
+                  items: _egyptianCities,
+                  prefixIcon: Icons.map_outlined,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedCity = value;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please select your city';
+                    }
+                    return null;
+                  },
+                ),
                 SizedBox(height: 16.h),
                 ChoseGender(onChanged: (val) => setState(() => gender = val)),
                 SizedBox(height: 16.h),
@@ -117,6 +165,7 @@ class _DonateViewState extends State<DonateView> {
                         return;
                       }
 
+                      // Success - Navigate to Upload Report View to verify donor
                       final newDonor = DonorModel(
                         name: 'New Donor (You)',
                         phoneNumber: '0123456789',
@@ -128,22 +177,16 @@ class _DonateViewState extends State<DonateView> {
                         distance: 0.1,
                         lastDonationMonth: 0,
                         available: true,
+                        location: _selectedCity ?? 'Cairo (القاهرة)',
                       );
 
-                      context.read<DonorCubit>().addDonor(newDonor);
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Registration successful! You are now a donor.',
-                          ),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
-
-                      Navigator.pushReplacementNamed(
+                      Navigator.pushNamed(
                         context,
-                        AppRoutesName.personRequests,
+                        AppRoutesName.uploadReportView,
+                        arguments: {
+                          'fromDonate': true,
+                          'donor': newDonor,
+                        },
                       );
                     }
                   },
@@ -543,6 +586,70 @@ class _ChoseGenderState extends State<ChoseGender> {
               ],
             ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+class LabelDropdown extends StatelessWidget {
+  final String text;
+  final String hintText;
+  final String? value;
+  final List<String> items;
+  final ValueChanged<String?> onChanged;
+  final String? Function(String?)? validator;
+  final IconData? prefixIcon;
+
+  const LabelDropdown({
+    super.key,
+    required this.text,
+    required this.hintText,
+    required this.value,
+    required this.items,
+    required this.onChanged,
+    this.validator,
+    this.prefixIcon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          text,
+          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.left,
+        ),
+        SizedBox(height: 12.h),
+        DropdownButtonFormField<String>(
+          initialValue: value,
+          hint: Text(
+            hintText,
+            style: TextStyle(color: Colors.black, fontSize: 14.sp),
+          ),
+          icon: const Icon(Icons.arrow_drop_down, color: Colors.grey),
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            prefixIcon: prefixIcon != null
+                ? Icon(prefixIcon, color: AppColor.kSecondaryColor)
+                : null,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: Colors.grey),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: AppColor.kSecondaryColor, width: 2),
+            ),
+          ),
+          items: items
+              .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+              .toList(),
+          onChanged: onChanged,
+          validator: validator,
         ),
       ],
     );

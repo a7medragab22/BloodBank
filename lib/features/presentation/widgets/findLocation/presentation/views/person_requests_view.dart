@@ -1,3 +1,4 @@
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/features/presentation/widgets/findLocation/presentation/widgets/person_info_card.dart';
 import 'package:blodbank/features/requestBlood/presentation/cubits/bloodRequest/blood_request_cubit.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,13 @@ class PersonRequestsView extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 243, 243, 243),
       appBar: AppBar(
         title: const Text('Person Requests', style: TextStyle(fontSize: 18)),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pushReplacementNamed(
+            context,
+            AppRoutesName.navigationBBar,
+          ),
+        ),
       ),
       body: BlocBuilder<BloodRequestCubit, BloodRequestState>(
         builder: (context, state) {
