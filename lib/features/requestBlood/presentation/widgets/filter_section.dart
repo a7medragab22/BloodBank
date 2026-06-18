@@ -1,17 +1,67 @@
 import 'package:blodbank/core/ReusableCompounds/widgets/custom_dropdown_feild.dart';
+import 'package:blodbank/core/themes/app_color.dart';
+import 'package:blodbank/features/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FilterSection extends StatelessWidget {
+class FilterSection extends StatefulWidget {
   const FilterSection({super.key});
+
+  @override
+  State<FilterSection> createState() => _FilterSectionState();
+}
+
+class _FilterSectionState extends State<FilterSection> {
+  String _selectedBloodType = 'O+';
+  String _selectedCity = 'Cairo (القاهرة)';
+
+  final List<String> _egyptianCities = const [
+    'Alexandria (الإسكندرية)',
+    'Aswan (أسوان)',
+    'Asyut (أسيوط)',
+    'Beheira (البحيرة)',
+    'Beni Suef (بني سويف)',
+    'Cairo (القاهرة)',
+    'Dakahlia (الدقهلية)',
+    'Damietta (دمياط)',
+    'Faiyum (الفيوم)',
+    'Gharbia (الغربية)',
+    'Giza (الجيزة)',
+    'Ismailia (الإسماعيلية)',
+    'Kafr El Sheikh (كفر الشيخ)',
+    'Luxor (الأقصر)',
+    'Matrouh (مرسى مطروح)',
+    'Minya (المنيا)',
+    'Monufia (المنوفية)',
+    'New Valley (الوادي الجديد)',
+    'North Sinai (شمال سيناء)',
+    'Port Said (بورسعيد)',
+    'Qalyubia (القليوبية)',
+    'Qena (قنا)',
+    'Red Sea (البحر الأحمر)',
+    'Sharqia (الشرقية)',
+    'Sohag (سوهاج)',
+    'South Sinai (جنوب سيناء)',
+    'Suez (السويس)',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(12),
-      padding: const EdgeInsets.all(12),
+      margin: EdgeInsets.all(12.r),
+      padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20.r),
         color: Colors.white,
+        border: Border.all(color: const Color(0xFFF1F5F9), width: 1.5),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF0F172A).withValues(alpha: 0.02),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         children: [
@@ -19,7 +69,7 @@ class FilterSection extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomDropdownField(
-                  value: 'O+',
+                  value: _selectedBloodType,
                   items: const [
                     'A+',
                     'A-',
@@ -30,40 +80,81 @@ class FilterSection extends StatelessWidget {
                     'AB+',
                     'AB-',
                   ],
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedBloodType = value ?? 'O+';
+                    });
+                  },
                 ),
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: 10.w),
               Expanded(
                 child: CustomDropdownField(
-                  value: '50 m',
-                  items: const [
-                    '50 m',
-                    '100 m',
-                    '500 m',
-                    '1 k',
-                    '2 k',
-                    '5 k',
-                    '10 k',
-                    '15 k',
-                    '20 k',
-                  ],
-                  onChanged: (value) {},
+                  value: _selectedCity,
+                  items: _egyptianCities,
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedCity = value ?? 'Cairo (القاهرة)';
+                    });
+                  },
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          TextField(
-            decoration: InputDecoration(
-              isDense: true,
-              hintText: "Enter city or ZIP code",
-              hintStyle: TextStyle(color: Colors.grey),
-              prefixIcon: Icon(Icons.search_outlined, color: Colors.grey),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
+          SizedBox(height: 12.h),
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () {
+                    // Reset filter to load all donors
+                    context.read<DonorCubit>().loadDonors();
+                  },
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color(0xFF64748B),
+                    side: const BorderSide(color: Color(0xFFE2E8F0), width: 1.5),
+                    padding: EdgeInsets.symmetric(vertical: 12.h),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                  ),
+                  child: Text(
+                    "Clear",
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
-            ),
+              SizedBox(width: 12.w),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    context.read<DonorCubit>().filterDonors(
+                          bloodGroup: _selectedBloodType,
+                          location: _selectedCity,
+                        );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.kPrimaryColor,
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    padding: EdgeInsets.symmetric(vertical: 12.h),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                  ),
+                  child: Text(
+                    "Apply Filter",
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

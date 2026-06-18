@@ -7,6 +7,7 @@ class DonorModel {
   final double distance;
   final int lastDonationMonth;
   final bool available;
+  final String location;
 
   DonorModel({
     required this.name,
@@ -17,5 +18,6 @@ class DonorModel {
     required this.distance,
     required this.lastDonationMonth,
     required this.available,
+    required this.location,
   });
 }

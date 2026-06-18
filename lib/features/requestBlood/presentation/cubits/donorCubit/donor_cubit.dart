@@ -17,6 +17,7 @@ class DonorCubit extends Cubit<DonorState> {
       distance: 2.3,
       lastDonationMonth: 3,
       available: true,
+      location: 'Cairo (القاهرة)',
     ),
     DonorModel(
       name: 'Sarah Johnson',
@@ -27,6 +28,7 @@ class DonorCubit extends Cubit<DonorState> {
       distance: 2.3,
       lastDonationMonth: 3,
       available: true,
+      location: 'Alexandria (الإسكندرية)',
     ),
     DonorModel(
       name: 'Sarah Johnson',
@@ -37,6 +39,7 @@ class DonorCubit extends Cubit<DonorState> {
       distance: 2.3,
       lastDonationMonth: 3,
       available: true,
+      location: 'Giza (الجيزة)',
     ),
     DonorModel(
       name: 'Sarah Johnson',
@@ -47,10 +50,20 @@ class DonorCubit extends Cubit<DonorState> {
       distance: 2.3,
       lastDonationMonth: 3,
       available: true,
+      location: 'Suez (السويس)',
     ),
   ];
   void loadDonors() {
     emit(DonorLoaded(allDonors));
+  }
+
+  void filterDonors({required String bloodGroup, required String location}) {
+    final filtered = allDonors.where((donor) {
+      final matchesBlood = donor.bloodGroup.trim().toLowerCase() == bloodGroup.trim().toLowerCase();
+      final matchesLocation = donor.location.trim().toLowerCase() == location.trim().toLowerCase();
+      return matchesBlood && matchesLocation;
+    }).toList();
+    emit(DonorLoaded(filtered));
   }
 
   void addDonor(DonorModel donor) {

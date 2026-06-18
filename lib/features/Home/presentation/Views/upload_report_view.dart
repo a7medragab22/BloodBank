@@ -1,7 +1,11 @@
 import 'dart:io';
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
+import 'package:blodbank/features/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
+import 'package:blodbank/features/requestBlood/presentation/models/donor_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UploadReportView extends StatefulWidget {
@@ -55,13 +59,29 @@ class _UploadReportViewState extends State<UploadReportView> {
     setState(() => _isUploading = false);
 
     if (mounted) {
+      final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+      final bool fromDonate = args?['fromDonate'] ?? false;
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Report uploaded successfully!'),
           backgroundColor: Colors.green,
         ),
       );
-      Navigator.pop(context);
+
+      if (fromDonate) {
+        final donor = args?['donor'] as DonorModel?;
+        if (donor != null) {
+          context.read<DonorCubit>().addDonor(donor);
+        }
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          AppRoutesName.personRequests,
+          (route) => route.isFirst,
+        );
+      } else {
+        Navigator.pop(context);
+      }
     }
   }
 

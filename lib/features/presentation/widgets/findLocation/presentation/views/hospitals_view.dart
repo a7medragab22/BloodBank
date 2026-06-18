@@ -12,14 +12,15 @@ class HospitalsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 243, 243, 243),
       appBar: AppBar(
-        title: const Text('Hospitals', style: TextStyle(fontSize: 18)),
+        title: const Text('Nearest Hospitals', style: TextStyle(fontSize: 18)),
       ),
       body: BlocBuilder<FindHospitaCubit, FindHospitalState>(
         builder: (context, state) {
           if (state is FindHospitalLoaded) {
             return ListView.separated(
               padding: const EdgeInsets.all(16),
-              itemBuilder: (_, i) => HospitalInfoCard(model: state.hospitals[i]),
+              itemBuilder: (_, i) =>
+                  HospitalInfoCard(model: state.hospitals[i]),
               separatorBuilder: (_, __) => const SizedBox(height: 12),
               itemCount: state.hospitals.length,
             );

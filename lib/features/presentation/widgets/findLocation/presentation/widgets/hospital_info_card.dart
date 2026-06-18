@@ -2,6 +2,7 @@ import 'package:blodbank/core/themes/app_color.dart';
 import 'package:blodbank/features/presentation/widgets/findLocation/presentation/model/find_hospital_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HospitalInfoCard extends StatelessWidget {
   const HospitalInfoCard({super.key, required this.model});
@@ -98,7 +99,22 @@ class HospitalInfoCard extends StatelessWidget {
                     side: BorderSide.none,
                   ),
 
-                  onPressed: () {},
+                  onPressed: () async {
+                    final String query = model.mapsQuery ?? model.name;
+                    final Uri googleMapsUrl = Uri.parse(
+                      "https://www.google.com/maps/search/?api=1&query=${Uri.encodeComponent(query)}",
+                    );
+                    try {
+                      if (!await launchUrl(
+                        googleMapsUrl,
+                        mode: LaunchMode.externalApplication,
+                      )) {
+                        throw Exception('Could not launch maps');
+                      }
+                    } catch (e) {
+                      debugPrint('Error launching maps: $e');
+                    }
+                  },
 
                   icon: const Icon(Icons.navigation_outlined),
                   label: const Text(
