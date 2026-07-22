@@ -1,0 +1,103 @@
+import 'package:blodbank/core/ReusableCompounds/widgets/custom_second_button.dart';
+import 'package:blodbank/core/themes/app_color.dart';
+import 'package:blodbank/features/requestBlood/presentation/cubits/donorCubit/donor_cubit.dart';
+import 'package:blodbank/features/requestBlood/presentation/views/blood_request_view.dart';
+import 'package:blodbank/features/requestBlood/presentation/widgets/donor_card.dart';
+import 'package:blodbank/features/requestBlood/presentation/widgets/filter_section.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class FindDonorsView extends StatefulWidget {
+  const FindDonorsView({super.key});
+
+  @override
+  State<FindDonorsView> createState() => _FindDonorsViewState();
+}
+
+class _FindDonorsViewState extends State<FindDonorsView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showRequestView();
+    });
+  }
+
+  void _showRequestView() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const BloodRequestView()),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: appBarFindDonors(context),
+
+      body: Column(
+        children: [
+          const FilterSection(),
+
+          Expanded(
+            child: BlocBuilder<DonorCubit, DonorState>(
+              builder: (context, state) {
+                int count = 0;
+                if (state is DonorLoaded) {
+                  count = state.donors.length;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 8.h,
+                        ),
+                        child: Text(
+                          '$count Donors found',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: state.donors.length,
+                          itemBuilder: (_, index) {
+                            return DonorCard(donor: state.donors[index]);
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: AppColor.kPrimaryColor,
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  AppBar appBarFindDonors(BuildContext context) {
+    return AppBar(
+      title: const Text("Find Donors", style: TextStyle(fontSize: 18)),
+      actions: [
+        CustomSecondButton(
+          text: '+ New Request',
+          height: 40.h,
+          width: .4.sw,
+          onPressed: _showRequestView,
+        ),
+        SizedBox(width: 16.w),
+      ],
+    );
+  }
+}

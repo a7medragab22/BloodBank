@@ -1,9 +1,12 @@
 import 'package:blodbank/core/Routes/app_routes_name.dart';
-import 'package:blodbank/features/Home/presentation/Views/Donate/presentation/views/donate_view.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/cubits/findHospital/find_hospita_cubit.dart';
-import 'package:blodbank/features/Home/presentation/Views/findLocation/presentation/views/find_hospital_view.dart';
+import 'package:blodbank/features/presentation/views/donate_view.dart';
+import 'package:blodbank/features/presentation/widgets/findLocation/presentation/cubits/findHospital/find_hospita_cubit.dart';
+import 'package:blodbank/features/presentation/widgets/findLocation/presentation/views/become_donor.dart';
+import 'package:blodbank/features/requestBlood/presentation/views/find_donors_view.dart';
 import 'package:blodbank/features/NavigationBar/presentation/Cubits/navigation/navigation_cubit.dart';
 import 'package:blodbank/features/NavigationBar/presentation/Views/navigation_bar.dart';
+import 'package:blodbank/features/Home/presentation/Views/upload_report_view.dart';
+import 'package:blodbank/features/Notifications/presentation/views/notifications_view.dart';
 import 'package:blodbank/features/Profile/presentation/Views/profile_view.dart';
 import 'package:blodbank/features/auth/presentation/cubits/LogIn/log_in_cubit.dart';
 import 'package:blodbank/features/auth/presentation/cubits/SignUp/sign_up_cubit.dart';
@@ -14,6 +17,8 @@ import 'package:blodbank/features/auth/presentation/screens/forget_password/new_
 import 'package:blodbank/features/auth/presentation/screens/initial_view.dart';
 import 'package:blodbank/features/auth/presentation/screens/login_screen.dart';
 import 'package:blodbank/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:blodbank/features/presentation/widgets/findLocation/presentation/views/hospitals_view.dart';
+import 'package:blodbank/features/presentation/widgets/findLocation/presentation/views/person_requests_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +37,7 @@ class AppRoute {
     AppRoutesName.newPassword: (_) => NewPassword(),
     AppRoutesName.forgetPassword: (_) => ForgetPassword(),
     AppRoutesName.checkEmail: (_) => CheckEmail(),
-    AppRoutesName.donateView: (_) => DonateView(),
+    AppRoutesName.donateView: (_) => const DonateView(),
     AppRoutesName.navigationBBar: (_) => BlocProvider(
       create: (context) => NavigationCubit(),
       child: const NavigationBBar(),
@@ -40,7 +45,16 @@ class AppRoute {
     AppRoutesName.profileView: (_) => ProfileView(),
     AppRoutesName.findHospital: (_) => BlocProvider(
       create: (context) => FindHospitaCubit()..loadHospital(),
-      child: FindHospitalView(),
+      child: BecomeDonor(),
+    ),
+
+    AppRoutesName.findDonors: (_) => const FindDonorsView(),
+    AppRoutesName.notificationView: (_) => const NotificationsView(),
+    AppRoutesName.uploadReportView: (_) => const UploadReportView(),
+    AppRoutesName.personRequests: (_) => const PersonRequestsView(),
+    AppRoutesName.hospitals: (_) => BlocProvider(
+      create: (context) => FindHospitaCubit()..loadHospital(),
+      child: const HospitalsView(),
     ),
   };
 }

@@ -1,3 +1,4 @@
+import 'package:blodbank/core/Routes/app_routes_name.dart';
 import 'package:blodbank/core/themes/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,237 +8,168 @@ class DonorInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: EdgeInsets.all(8.w),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.r),
-          color: const Color(0xffD7D6D6),
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            spreadRadius: 0,
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          // Upload Reports Item
+          _buildFeatureItem(
+            context: context,
+            icon: Icons.description_outlined,
+            iconColor: Colors.blue[600]!,
+            iconBgColor: Colors.blue[50]!,
+            title: 'Upload Reports',
+            subtitle: 'Share medical documents',
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutesName.uploadReportView);
+            },
+          ),
+          _buildDivider(),
+          // Find Hospitals Item
+          _buildFeatureItem(
+            context: context,
+            icon: Icons.insights_outlined, // ECG/pulse line representation
+            iconColor: Colors.teal[600]!,
+            iconBgColor: Colors.teal[50]!,
+            title: 'Find Hospitals',
+            subtitle: 'Nearby blood banks',
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutesName.hospitals);
+            },
+          ),
+          _buildDivider(),
+          // AI Assistant Item
+          _buildFeatureItem(
+            context: context,
+            icon: Icons.smart_toy_outlined,
+            iconColor: Colors.deepPurple[600]!,
+            iconBgColor: Colors.deepPurple[50]!,
+            title: 'AI Assistant',
+            subtitle: 'Ask anything about blood donation',
+            showAIBadge: true,
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('AI Assistant feature coming soon!'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFeatureItem({
+    required BuildContext context,
+    required IconData icon,
+    required Color iconColor,
+    required Color iconBgColor,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+    bool showAIBadge = false,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(24.r),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         child: Row(
           children: [
-            /// LEFT CARD
-            Expanded(
-              flex: 2,
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 8.h),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.r),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Regenration cycle',
-                      style: TextStyle(
-                        color: AppColor.kSecondaryColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14.sp,
-                      ),
-                    ),
-                    Image.asset(
-                      'Assets/images/blod_logo.png',
-                      width: 90.w,
-                      height: 90.h,
-                      fit: BoxFit.contain,
-                    ),
-                    Text(
-                      '90 days passed',
-                      style: TextStyle(fontSize: 13.sp, color: Colors.grey),
-                    ),
-                  ],
-                ),
+            Container(
+              width: 44.w,
+              height: 44.h,
+              decoration: BoxDecoration(
+                color: iconBgColor,
+                borderRadius: BorderRadius.circular(14.r),
+              ),
+              alignment: Alignment.center,
+              child: Icon(
+                icon,
+                color: iconColor,
+                size: 22.sp,
               ),
             ),
-
-            SizedBox(width: 8.w),
-
-            /// RIGHT SIDE
+            SizedBox(width: 14.w),
             Expanded(
-              flex: 2,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8.h,
-                        horizontal: 8.w,
+                  Row(
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.r),
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'Assets/images/blod_logo.png',
-                            width: 50.w,
-                            height: 50.h,
+                      if (showAIBadge) ...[
+                        SizedBox(width: 6.w),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 6.w,
+                            vertical: 2.h,
                           ),
-                          Text(
-                            'Blood Type',
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple[50],
+                            borderRadius: BorderRadius.circular(6.r),
+                          ),
+                          child: Text(
+                            'AI',
                             style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.sp,
+                              color: Colors.deepPurple[700],
+                              fontSize: 9.sp,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      ],
+                    ],
                   ),
-                  SizedBox(height: 8.h),
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8.h,
-                        horizontal: 8.w,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.r),
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            'Assets/images/blod_logo.png',
-                            width: 50.w,
-                            height: 50.h,
-                          ),
-                          Text(
-                            'Number of donations',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12.sp,
-                            ),
-                          ),
-                        ],
-                      ),
+                  SizedBox(height: 2.h),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.grey[500],
                     ),
                   ),
                 ],
               ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.grey[400],
+              size: 14.sp,
             ),
           ],
         ),
       ),
     );
   }
+
+  Widget _buildDivider() {
+    return Divider(
+      height: 1,
+      thickness: 1,
+      color: Colors.grey[100],
+      indent: 16.w,
+      endIndent: 16.w,
+    );
+  }
 }
-
-
-
-
-
-
-
-
-
-
-// class DonorInfoCard extends StatelessWidget {
-//   const DonorInfoCard({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Expanded(
-//       child: Container(
-//         padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
-//         decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(16),
-//           color: Color.fromARGB(255, 215, 214, 214),
-//         ),
-//         child: Row(
-//           children: [
-//             Container(
-             
-//               decoration: BoxDecoration(
-//                 borderRadius: BorderRadius.circular(16),
-//                 color: Colors.white,
-//               ),
-//               padding: EdgeInsets.only(top: 8, bottom: 8),
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Text(
-//                     'Regenration cycle',
-//                     style: TextStyle(
-//                       color: AppColor.kSecondaryColor,
-//                       fontWeight: FontWeight.w500,
-//                     ),
-//                   ),
-//                   Image.asset(
-//                     'Assets/images/blod_logo.png',
-//                     width: 120.w,
-//                     height: 100.h,
-//                     fit: BoxFit.contain,
-//                   ),
-//                   Text(
-//                     '90 days passed',
-//                     style: TextStyle(fontSize: 14.sp, color: Colors.grey),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             Spacer(flex: 1),
-//             Column(
-//               children: [
-//                 Container(
-//                   width: .4.sw,
-//                   height: .14.sh,
-//                   decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(16),
-//                     color: Colors.white,
-//                   ),
-//                   padding: EdgeInsets.only(top: 8, bottom: 8),
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                     children: [
-//                       Image.asset(
-//                         'Assets/images/blod_logo.png',
-//                         width: 60.w,
-//                         height: 60.h,
-//                       ),
-//                       Text(
-//                         'Blood Type',
-//                         style: TextStyle(color: Colors.grey, fontSize: 14.sp),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//                 Spacer(flex: 1),
-//                 Container(
-//                   width: .4.sw,
-//                   height: .14.sh,
-//                   decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(16),
-//                     color: Colors.white,
-//                   ),
-//                   padding: EdgeInsets.only(top: 8, bottom: 8),
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                     children: [
-//                       Image.asset(
-//                         'Assets/images/blod_logo.png',
-//                         width: 60.w,
-//                         height: 60.h,
-//                       ),
-//                       Text(
-//                         'Number of donations',
-//                         style: TextStyle(color: Colors.grey, fontSize: 12.sp),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

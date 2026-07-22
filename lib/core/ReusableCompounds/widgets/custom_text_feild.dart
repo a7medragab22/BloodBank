@@ -12,6 +12,10 @@ class CustomTextField extends StatefulWidget {
   final TextAlign textAlign;
   final IconData? preffixIcon;
   final void Function(String)? onChanged;
+  final TextInputType? keyboardType;
+  final bool readOnly;
+  final VoidCallback? onTap;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     super.key,
@@ -24,6 +28,10 @@ class CustomTextField extends StatefulWidget {
     this.textAlign = TextAlign.right,
     this.preffixIcon,
     this.onChanged,
+    this.keyboardType,
+    this.readOnly = false,
+    this.onTap,
+    this.validator,
   });
 
   @override
@@ -41,16 +49,22 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: widget.controller,
       obscureText: _isObscure,
       textAlign: widget.textAlign,
       onChanged: widget.onChanged,
+      keyboardType: widget.keyboardType,
+      readOnly: widget.readOnly,
+      onTap: widget.onTap,
+      validator: widget.validator,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         hintText: widget.hintText,
         hintStyle: TextStyle(color: widget.hintColor, fontSize: 14.sp),
-        prefixIcon: Icon(widget.preffixIcon, color: AppColor.kSecondaryColor),
+        prefixIcon: widget.preffixIcon != null
+            ? Icon(widget.preffixIcon, color: AppColor.kSecondaryColor)
+            : null,
         suffixIcon: widget.obscureText
             ? IconButton(
                 icon: Icon(
@@ -64,11 +78,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 },
               )
             : (widget.icon != null
-                  ? Icon(widget.icon, color: Colors.grey)
-                  : null),
-
-        border:
-            widget.border ??
+                ? Icon(widget.icon, color: Colors.grey)
+                : null),
+        border: widget.border ??
             OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
